@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { FAQS } from "@/lib/content";
 
-const EZ = "cubic-bezier(.22,1,.36,1)";
-
 export function Faq() {
   const [open, setOpen] = useState(0);
 
@@ -16,11 +14,12 @@ export function Faq() {
           <div
             key={item.q}
             style={{
-              background: "#fff",
-              border: "1px solid var(--line-200)",
-              borderRadius: 14,
+              background: "var(--card)",
+              border: isOpen ? "2px solid var(--ink)" : "2px solid var(--hairline)",
+              borderRadius: 3,
               padding: "4px 20px",
-              boxShadow: "var(--shadow-raised)",
+              boxShadow: isOpen ? "4px 4px 0 var(--ink)" : "none",
+              transition: "box-shadow .2s ease, border-color .2s ease",
             }}
           >
             <button
@@ -38,10 +37,10 @@ export function Faq() {
                 padding: "16px 0",
                 cursor: "pointer",
                 textAlign: "left",
-                fontFamily: "var(--font-sans)",
-                fontSize: 16,
+                fontFamily: "var(--font-serif-display)",
+                fontSize: 17,
                 fontWeight: 600,
-                color: "var(--navy)",
+                color: "var(--ink)",
               }}
             >
               <span>{item.q}</span>
@@ -49,31 +48,30 @@ export function Faq() {
                 style={{
                   display: "inline-flex",
                   flex: "none",
-                  color: isOpen ? "var(--cta)" : "var(--text-muted)",
-                  transition: `transform .3s ${EZ}, color .2s`,
+                  color: isOpen ? "var(--accent)" : "var(--ink-muted)",
+                  transition: "transform .25s ease, color .2s",
                   transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                 }}
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
             </button>
             <div
               style={{
                 overflow: "hidden",
-                transition: "max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease",
+                transition: "max-height .35s ease, opacity .25s ease",
                 maxHeight: isOpen ? 400 : 0,
                 opacity: isOpen ? 1 : 0,
               }}
             >
               <p
                 style={{
-                  margin: "0 0 16px",
+                  margin: "2px 0 18px",
                   fontSize: 14.5,
-                  lineHeight: 1.62,
-                  color: "var(--ink)",
-                  opacity: 0.9,
+                  lineHeight: 1.65,
+                  color: "var(--ink-soft)",
                   maxWidth: "64ch",
                 }}
               >

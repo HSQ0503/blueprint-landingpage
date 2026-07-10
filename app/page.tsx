@@ -9,42 +9,45 @@ import { SCORES } from "@/lib/content";
 import type { IconName } from "@/components/Icon";
 
 const eyebrow = {
-  fontFamily: "var(--font-sans)",
-  fontSize: 12,
+  fontFamily: "var(--font-mono-ui)",
+  fontSize: 11.5,
   fontWeight: 600,
   letterSpacing: "0.14em",
   textTransform: "uppercase" as const,
-  color: "var(--brand-700)",
+  color: "var(--accent)",
 };
 
-const ROAD: { icon: IconName; title: string; sub: string; delay: number }[] = [
-  { icon: "scan", title: "Diagnostic", sub: "Find weak spots", delay: 0.1 },
-  { icon: "reading", title: "Foundations", sub: "Core concepts", delay: 0.4 },
-  { icon: "drills", title: "Pattern drills", sub: "Earn XP", delay: 0.7 },
-  { icon: "aimath", title: "Desmos mastery", sub: "Calc strategies", delay: 1 },
-  { icon: "tests", title: "Practice tests", sub: "5 full-length", delay: 1.3 },
-];
-const CONNECTORS = [0.28, 0.58, 0.88, 1.18, 1.48];
+const serifH = {
+  fontFamily: "var(--font-serif-display)",
+  fontWeight: 600,
+  letterSpacing: "-0.015em",
+  color: "var(--ink)",
+};
 
-const HOW: { icon: IconName; iconBg: string; iconColor: string; title: string; desc: string }[] = [
+// Full-width ink rule between paper sections (print grid).
+const ruled = { borderTop: "2px solid var(--ink)" };
+
+const ROAD: { icon: IconName; title: string; sub: string }[] = [
+  { icon: "scan", title: "Diagnostic", sub: "Find weak spots" },
+  { icon: "reading", title: "Foundations", sub: "Core concepts" },
+  { icon: "drills", title: "Pattern drills", sub: "Earn XP" },
+  { icon: "aimath", title: "Desmos mastery", sub: "Calc strategies" },
+  { icon: "tests", title: "Practice tests", sub: "5 full-length" },
+];
+
+const HOW: { icon: IconName; title: string; desc: string }[] = [
   {
     icon: "zap",
-    iconBg: "var(--tile)",
-    iconColor: "var(--brand-700)",
     title: "Earn XP on every drill",
     desc: "Graded on your process, not just the answer — so every rep actually teaches you something.",
   },
   {
     icon: "flame-gold",
-    iconBg: "#fff7e6",
-    iconColor: "var(--gold-600)",
     title: "Keep your streak alive",
     desc: "Two clean drills a day builds the habit that gets you to test day ready, not cramming.",
   },
   {
     icon: "target",
-    iconBg: "var(--tile)",
-    iconColor: "var(--brand-700)",
     title: "Master one pattern at a time",
     desc: "Watch your mastery bar climb as you turn weak spots into strengths, pattern by pattern.",
   },
@@ -53,104 +56,64 @@ const HOW: { icon: IconName; iconBg: string; iconColor: string; title: string; d
 export default function HomePage() {
   return (
     <main>
-      {/* ============================ HERO ============================ */}
-      <section
-        id="top"
-        className="relative overflow-hidden"
-        style={{ background: "var(--grad-hero)", color: "#fff" }}
-      >
+      {/* ============================ HERO (pine) ============================ */}
+      <section id="top" className="relative overflow-hidden" style={{ background: "var(--navy)", color: "var(--cream)" }}>
         <div
           aria-hidden
           className="pointer-events-none select-none"
           style={{
             position: "absolute",
-            right: -46,
-            top: -56,
-            fontFamily: "var(--font-display)",
+            right: -40,
+            top: -60,
+            fontFamily: "var(--font-serif-display)",
             fontWeight: 900,
-            fontSize: 360,
+            fontSize: 380,
             lineHeight: 1,
-            letterSpacing: "-0.04em",
-            color: "rgba(255,255,255,var(--ghost-op,.06))",
+            letterSpacing: "-0.05em",
+            color: "rgba(247,241,227,.05)",
           }}
         >
           1500
         </div>
 
         <div
-          className="relative mx-auto grid grid-cols-1 items-center gap-12 px-6 pb-20 pt-16 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,.94fr)] lg:gap-[56px] lg:pb-[96px] lg:pt-[88px]"
+          className="relative mx-auto grid grid-cols-1 items-center gap-14 px-6 pb-20 pt-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,.9fr)] lg:gap-[64px] lg:pb-[96px] lg:pt-[80px]"
           style={{ maxWidth: 1160 }}
         >
           <Reveal>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "6px 13px",
-                borderRadius: 999,
-                background: "rgba(255,255,255,.08)",
-                border: "1px solid rgba(255,255,255,.16)",
-              }}
-            >
-              <span style={{ color: "var(--sky)", display: "inline-flex" }}>
-                <Icon name="target" size={15} />
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: 11.5,
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "#fff",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                400+ students on the road to 1500
-              </span>
-            </div>
+            <span className="paper-tag">
+              Taught by a <b style={{ color: "var(--accent)", fontWeight: 700 }}>1580</b> scorer —{" "}
+              <b style={{ color: "var(--accent)", fontWeight: 700 }}>four</b> perfect 800s.
+            </span>
 
             <h1
               style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(38px,5.2vw,62px)",
-                lineHeight: 1.04,
-                letterSpacing: "-0.025em",
-                margin: "18px 0 0",
+                ...serifH,
+                color: "var(--cream)",
+                fontSize: "clamp(42px,5.6vw,68px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.02em",
+                margin: "24px 0 0",
               }}
             >
               The SAT changed.
               <br />
-              Your prep should too.
+              Your prep should{" "}
+              <em style={{ fontStyle: "italic", color: "var(--gold)" }}>too.</em>
             </h1>
 
-            <p
-              style={{
-                fontSize: 17.5,
-                lineHeight: 1.62,
-                color: "rgba(255,255,255,.82)",
-                maxWidth: "32em",
-                margin: "20px 0 0",
-              }}
-            >
-              I&apos;m Scott. I scored a <b style={{ color: "#fff" }}>1580</b> on the SAT and earned a
-              perfect <b style={{ color: "#fff" }}>800 Math</b> score four times. I help students
-              master the new Digital SAT with Desmos strategies, reading systems, grammar shortcuts,
-              and a personalized plan built around their weaknesses.
+            <p style={{ fontSize: 17, lineHeight: 1.65, color: "var(--cream-soft)", maxWidth: "32em", margin: "22px 0 0" }}>
+              I&apos;m Scott. I help students master the new Digital SAT with Desmos strategies,
+              reading systems, grammar shortcuts, and a personalized plan built around their
+              weaknesses — the same system that&apos;s moved{" "}
+              <b style={{ color: "var(--cream)" }}>400+ students</b> toward 1500.
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 14, margin: "30px 0 0" }}>
-              <CtaButton href="/tutoring#pricing" variant="cta" size="lg" arrow>
+              <CtaButton href="/tutoring#pricing" variant="cream" size="lg" arrow>
                 Master the Digital SAT
               </CtaButton>
-              <CtaButton
-                href="/blueprint"
-                variant="ghost"
-                size="lg"
-                style={{ padding: "0 22px", fontSize: 15, gap: 8 }}
-              >
+              <CtaButton href="/blueprint" variant="ghost" size="lg">
                 Explore the Blueprint
               </CtaButton>
             </div>
@@ -159,10 +122,10 @@ export default function HomePage() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "22px 32px",
-                marginTop: 34,
-                paddingTop: 26,
-                borderTop: "1px solid rgba(255,255,255,.14)",
+                gap: "22px 36px",
+                marginTop: 36,
+                paddingTop: 24,
+                borderTop: "2px dashed rgba(247,241,227,.3)",
               }}
             >
               {[
@@ -180,17 +143,25 @@ export default function HomePage() {
                 <div key={i}>
                   <div
                     style={{
-                      fontFamily: "var(--font-display)",
-                      fontWeight: 800,
-                      fontSize: 27,
-                      color: "#fff",
-                      letterSpacing: "-0.02em",
+                      fontFamily: "var(--font-serif-display)",
+                      fontWeight: 700,
+                      fontSize: 30,
+                      color: "var(--cream)",
                       lineHeight: 1,
                     }}
                   >
                     {stat.node}
                   </div>
-                  <div style={{ fontSize: 12, color: "var(--sky)", marginTop: 5, letterSpacing: "0.02em" }}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono-ui)",
+                      fontSize: 10.5,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "var(--sky)",
+                      marginTop: 6,
+                    }}
+                  >
                     {stat.label}
                   </div>
                 </div>
@@ -198,98 +169,46 @@ export default function HomePage() {
             </div>
           </Reveal>
 
+          {/* Matted portrait — a print, not a device mockup. */}
           <Reveal delay={120} style={{ position: "relative" }}>
             <div
               style={{
-                borderRadius: 16,
-                overflow: "hidden",
-                boxShadow: "var(--shadow-float)",
-                border: "1px solid rgba(255,255,255,.14)",
-                background: "#0a1f45",
+                background: "var(--card)",
+                border: "2px solid var(--ink)",
+                borderRadius: 3,
+                boxShadow: "8px 8px 0 var(--navy-ink)",
+                padding: 12,
+                maxWidth: 400,
+                margin: "0 auto",
+                transform: "rotate(1.2deg)",
               }}
             >
+              <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5" }}>
+                <ImageSlot label="Portrait of Scott — 4×5" />
+              </div>
               <div
                 style={{
-                  height: 34,
                   display: "flex",
                   alignItems: "center",
-                  gap: 7,
-                  padding: "0 14px",
-                  background: "rgba(255,255,255,.04)",
-                  borderBottom: "1px solid rgba(255,255,255,.08)",
+                  justifyContent: "space-between",
+                  gap: 10,
+                  padding: "12px 4px 2px",
                 }}
               >
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
-                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
-                <span style={{ marginLeft: 8, color: "rgba(255,255,255,.55)", fontSize: 11, letterSpacing: "0.02em" }}>
-                  Intro · The 1500 Blueprint
+                <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)" }}>
+                  Scott — <em style={{ color: "var(--accent)" }}>1580 SAT</em>
                 </span>
-              </div>
-              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10", background: "#12305c" }}>
-                <ImageSlot tone="dark" label="Drop a hero video thumbnail or screenshot" />
-                <div style={{ position: "absolute", left: 16, bottom: 16, pointerEvents: "none" }}>
-                  <span
-                    style={{
-                      width: 56,
-                      height: 56,
-                      borderRadius: "50%",
-                      background: "rgba(43,111,214,.95)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 10px 30px rgba(7,25,59,.5)",
-                    }}
-                  >
-                    <Icon name="play" size={24} style={{ color: "#fff", marginLeft: 3 }} />
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                position: "absolute",
-                left: -16,
-                bottom: -16,
-                background: "#fff",
-                borderRadius: 14,
-                boxShadow: "var(--shadow-pop)",
-                padding: "11px 15px",
-                display: "flex",
-                gap: 11,
-                alignItems: "center",
-                border: "1px solid var(--line-150)",
-              }}
-            >
-              <span
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 11,
-                  background: "var(--tile)",
-                  color: "var(--brand-700)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flex: "none",
-                }}
-              >
-                <Icon name="target" size={20} />
-              </span>
-              <div>
-                <div
+                <span
                   style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    fontSize: 15,
-                    color: "var(--navy)",
-                    lineHeight: 1.1,
+                    fontFamily: "var(--font-mono-ui)",
+                    fontSize: 10,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--ink-muted)",
                   }}
                 >
-                  Built for 1500+
-                </div>
-                <div style={{ fontSize: 11.5, color: "var(--text-muted)" }}>every strategy, one goal</div>
+                  4× 800 Math
+                </span>
               </div>
             </div>
           </Reveal>
@@ -297,24 +216,14 @@ export default function HomePage() {
       </section>
 
       {/* ======================= ROAD TO 1500 ======================= */}
-      <section className="bg-white py-16 lg:pb-[84px] lg:pt-[88px]">
+      <section className="py-16 lg:py-[88px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <Reveal style={{ textAlign: "center", maxWidth: "40em", margin: "0 auto" }}>
+          <Reveal style={{ textAlign: "center", maxWidth: "42em", margin: "0 auto" }}>
             <div style={eyebrow}>Your road to 1500</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(30px,3.6vw,42px)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
+            <h2 style={{ ...serifH, fontSize: "clamp(30px,3.6vw,44px)", lineHeight: 1.06, margin: "14px 0 0" }}>
               A clear path — one pattern at a time.
             </h2>
-            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: "var(--ink)", opacity: 0.9, margin: "14px 0 0" }}>
+            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: "var(--ink-soft)", margin: "14px 0 0" }}>
               No more random practice. Every step is mapped, so you always know exactly what moves
               your score next.
             </p>
@@ -324,11 +233,11 @@ export default function HomePage() {
             delay={80}
             style={{
               marginTop: 44,
-              background: "linear-gradient(180deg,#fff,var(--mist))",
-              border: "1px solid var(--line-200)",
-              borderRadius: 22,
+              background: "var(--card)",
+              border: "2px solid var(--ink)",
+              borderRadius: 3,
               padding: "38px 28px",
-              boxShadow: "var(--shadow-raised)",
+              boxShadow: "var(--shadow-card-lg)",
             }}
           >
             <div style={{ overflowX: "auto" }}>
@@ -337,14 +246,14 @@ export default function HomePage() {
                   display: "flex",
                   alignItems: "flex-start",
                   justifyContent: "space-between",
-                  gap: 4,
+                  gap: 6,
                   maxWidth: 960,
-                  minWidth: 660,
+                  minWidth: 680,
                   margin: "0 auto",
                 }}
               >
                 {ROAD.map((step, i) => (
-                  <RoadStep key={step.title} step={step} connectorDelay={CONNECTORS[i]} last={i === ROAD.length - 1} />
+                  <RoadStep key={step.title} step={step} index={i} />
                 ))}
                 <div
                   style={{
@@ -352,32 +261,34 @@ export default function HomePage() {
                     flexDirection: "column",
                     alignItems: "center",
                     textAlign: "center",
-                    width: 120,
+                    width: 118,
                     flex: "none",
-                    animation: "popIn .6s cubic-bezier(.22,1,.36,1) both",
-                    animationDelay: "1.62s",
+                    animation: "popIn .55s cubic-bezier(.22,1,.36,1) both",
+                    animationDelay: "1.5s",
                   }}
                 >
                   <span
                     style={{
-                      position: "relative",
-                      width: 64,
-                      height: 64,
-                      borderRadius: 20,
-                      background: "linear-gradient(135deg,var(--gold),var(--gold-600))",
-                      color: "var(--navy)",
+                      width: 62,
+                      height: 62,
+                      borderRadius: 2,
+                      background: "var(--gold)",
+                      color: "var(--ink)",
+                      border: "2px solid var(--ink)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: "0 3px 0 var(--gold-700),0 10px 24px rgba(240,169,0,.4)",
+                      boxShadow: "3px 3px 0 var(--ink)",
                     }}
                   >
                     <Icon name="trophy" size={28} />
                   </span>
-                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 16, color: "var(--navy)", marginTop: 11 }}>
+                  <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)", marginTop: 12 }}>
                     1500
                   </div>
-                  <div style={{ fontSize: 11.5, color: "var(--flag)", fontWeight: 600, marginTop: 2 }}>Goal reached</div>
+                  <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--accent)", marginTop: 3 }}>
+                    Goal reached
+                  </div>
                 </div>
               </div>
             </div>
@@ -386,21 +297,11 @@ export default function HomePage() {
       </section>
 
       {/* ======================= TWO OFFERINGS ======================= */}
-      <section className="bg-haze py-16 lg:py-[84px]">
+      <section className="py-16 lg:py-[88px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
           <Reveal style={{ textAlign: "center", maxWidth: "36em", margin: "0 auto 40px" }}>
             <div style={eyebrow}>Choose your path</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(28px,3.4vw,40px)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
+            <h2 style={{ ...serifH, fontSize: "clamp(28px,3.4vw,42px)", lineHeight: 1.06, margin: "14px 0 0" }}>
               Two ways to get to your goal.
             </h2>
           </Reveal>
@@ -410,14 +311,10 @@ export default function HomePage() {
               <OfferingCard
                 href="/blueprint"
                 iconName="layers"
-                iconBg="var(--tile)"
-                iconColor="var(--brand-700)"
                 title="The 1500 Blueprint"
                 sub="Self-paced system"
                 body="Courses, Desmos drills, 5 practice tests, and a 1,200+ question bank. Earn XP as you master each pattern."
                 tags={["1,200+ questions", "5 practice tests", "Self-paced"]}
-                tagColor="var(--brand-700)"
-                tagBg="var(--ice)"
                 cta="Explore the Blueprint"
               />
             </Reveal>
@@ -425,14 +322,10 @@ export default function HomePage() {
               <OfferingCard
                 href="/tutoring"
                 iconName="target"
-                iconBg="#fff7e6"
-                iconColor="var(--gold-600)"
                 title="1-on-1 Coaching"
                 sub="Work directly with Scott"
                 body="A custom plan, weekly reviews, and strategies built around your exact weak spots — with Blueprint access included."
                 tags={["+150 pts avg", "Weekly reviews", "Any goal"]}
-                tagColor="var(--flag)"
-                tagBg="#fff7e6"
                 cta="Explore tutoring"
                 goldTop
               />
@@ -442,65 +335,47 @@ export default function HomePage() {
       </section>
 
       {/* ======================= HOW IT WORKS ======================= */}
-      <section className="bg-white py-16 lg:py-[84px]">
+      <section className="py-16 lg:py-[88px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
           <Reveal style={{ textAlign: "center", maxWidth: "36em", margin: "0 auto 40px" }}>
             <div style={eyebrow}>How it works</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(28px,3.4vw,40px)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
+            <h2 style={{ ...serifH, fontSize: "clamp(28px,3.4vw,42px)", lineHeight: 1.06, margin: "14px 0 0" }}>
               Earn XP. Build streaks. Master patterns.
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 gap-[22px] md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {HOW.map((card, i) => (
               <Reveal
                 key={card.title}
                 delay={i * 90}
                 style={{
-                  background: "var(--mist)",
-                  border: "1px solid var(--line-150)",
-                  borderRadius: 18,
+                  background: "var(--card)",
+                  border: "2px solid var(--ink)",
+                  borderRadius: 3,
                   padding: 24,
+                  boxShadow: "var(--shadow-card)",
                 }}
               >
                 <span
                   style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 14,
-                    background: card.iconBg,
-                    color: card.iconColor,
+                    width: 48,
+                    height: 48,
+                    borderRadius: 2,
+                    background: "var(--tag)",
+                    color: "var(--ink)",
+                    border: "2px solid var(--ink)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <Icon name={card.icon} size={26} />
+                  <Icon name={card.icon} size={24} />
                 </span>
-                <div
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    fontSize: 18,
-                    color: "var(--navy)",
-                    marginTop: 16,
-                  }}
-                >
+                <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 19, color: "var(--ink)", marginTop: 16 }}>
                   {card.title}
                 </div>
-                <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--text-muted)", margin: "6px 0 0" }}>
-                  {card.desc}
-                </p>
+                <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--ink-muted)", margin: "7px 0 0" }}>{card.desc}</p>
               </Reveal>
             ))}
           </div>
@@ -508,135 +383,90 @@ export default function HomePage() {
       </section>
 
       {/* ======================= TESTIMONIALS ======================= */}
-      <section id="testimonials" className="bg-haze py-16 lg:py-[88px]">
+      <section id="testimonials" className="py-16 lg:py-[88px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <Reveal style={{ maxWidth: "38em" }}>
-            <div style={eyebrow}>Don&apos;t just take my word for it</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(30px,3.6vw,42px)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
-              Here&apos;s what students are saying.
+          <Reveal style={{ maxWidth: "40em" }}>
+            <div style={eyebrow}>Proof, not promises</div>
+            <h2 style={{ ...serifH, fontSize: "clamp(30px,3.6vw,44px)", lineHeight: 1.06, margin: "14px 0 0" }}>
+              Real students. Real score jumps.
             </h2>
           </Reveal>
 
           <Reveal delay={80}>
             <TestimonialCarousel />
           </Reveal>
+        </div>
+      </section>
 
-          <Reveal delay={120}>
-            <WallOfWins />
+      {/* ======================= WALL OF WINS (pine band) ======================= */}
+      <section style={{ ...ruled, background: "var(--navy)" }} className="py-16 lg:py-[88px]">
+        <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
+          <Reveal>
+            <span className="paper-tag" style={{ transform: "rotate(-1.6deg)" }}>
+              Wall of <b style={{ color: "var(--accent)" }}>wins.</b>
+            </span>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <ResultsMosaic />
           </Reveal>
         </div>
       </section>
 
       {/* ============================ ABOUT ============================ */}
-      <section id="about" className="bg-white py-16 lg:py-[88px]">
+      <section id="about" className="py-16 lg:py-[88px]" style={ruled}>
         <div
           className="mx-auto grid grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:gap-[60px]"
           style={{ maxWidth: 1160 }}
         >
-          <Reveal style={{ position: "relative" }}>
+          <Reveal>
             <div
               style={{
-                background: "linear-gradient(160deg,#eef1fb,#e3e9fb)",
-                borderRadius: 22,
-                padding: 22,
-                border: "1px solid var(--line-150)",
+                background: "var(--card)",
+                border: "2px solid var(--ink)",
+                borderRadius: 3,
+                boxShadow: "var(--shadow-card-lg)",
+                padding: 12,
+                transform: "rotate(-1deg)",
+                maxWidth: 400,
               }}
             >
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "4 / 5",
-                  borderRadius: 15,
-                  overflow: "hidden",
-                  boxShadow: "var(--shadow-float)",
-                  background: "var(--mist)",
-                }}
-              >
-                <ImageSlot label="Drop a photo of Scott" />
+              <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5" }}>
+                <ImageSlot label="Photo of Scott" />
               </div>
-            </div>
-            <div
-              style={{
-                position: "absolute",
-                right: 12,
-                bottom: -16,
-                background: "#fff",
-                borderRadius: 14,
-                boxShadow: "var(--shadow-pop)",
-                padding: "11px 15px",
-                display: "flex",
-                gap: 11,
-                alignItems: "center",
-                border: "1px solid var(--line-150)",
-              }}
-            >
-              <span
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 11,
-                  background: "#fff7e6",
-                  color: "var(--gold-600)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flex: "none",
-                }}
-              >
-                <Icon name="trophy" size={20} />
-              </span>
-              <div>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--navy)", lineHeight: 1.1 }}>
-                  4× perfect 800
-                </div>
-                <div style={{ fontSize: 11.5, color: "var(--text-muted)" }}>SAT Math</div>
+              <div style={{ padding: "12px 4px 2px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)" }}>
+                  4× perfect 800 — SAT Math
+                </span>
+                <span style={{ color: "var(--gold-600)", display: "inline-flex" }}>
+                  <Icon name="trophy" size={18} />
+                </span>
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={90}>
             <div style={eyebrow}>About Scott</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(28px,3.3vw,38px)",
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
+            <h2 style={{ ...serifH, fontSize: "clamp(28px,3.3vw,40px)", lineHeight: 1.08, margin: "14px 0 0" }}>
               I built SAT prep for the new Digital SAT.
             </h2>
-            <p style={{ fontSize: 16, lineHeight: 1.62, color: "var(--ink)", opacity: 0.9, margin: "18px 0 0" }}>
-              I scored a <b style={{ color: "var(--brand-700)" }}>1580</b> on the SAT and earned a
-              perfect <b style={{ color: "var(--navy)" }}>800 Math</b> score four times. Now I help
+            <p style={{ fontSize: 16, lineHeight: 1.65, color: "var(--ink-soft)", margin: "18px 0 0" }}>
+              I scored a <b style={{ color: "var(--accent)" }}>1580</b> on the SAT and earned a
+              perfect <b style={{ color: "var(--ink)" }}>800 Math</b> score four times. Now I help
               students master the new Digital SAT with Desmos strategies, reading systems, grammar
               shortcuts, and a clear plan built around their weaknesses.
             </p>
-            <p style={{ fontSize: 16, lineHeight: 1.62, color: "var(--ink)", opacity: 0.9, margin: "14px 0 0" }}>
+            <p style={{ fontSize: 16, lineHeight: 1.65, color: "var(--ink-soft)", margin: "14px 0 0" }}>
               Most students waste months doing random practice without knowing what to fix. My goal
               is to make SAT prep more direct: find the weak spots, learn the right strategy, and
               practice with a system that actually matches the test.
             </p>
-            <p style={{ fontSize: 16, lineHeight: 1.62, color: "var(--ink)", opacity: 0.9, margin: "14px 0 0" }}>
+            <p style={{ fontSize: 16, lineHeight: 1.65, color: "var(--ink-soft)", margin: "14px 0 0" }}>
               Through The 1500 Blueprint and private tutoring, I help students study with structure,
               accountability, and the strategies they need to raise their scores.
             </p>
-            <div style={{ marginTop: 26 }}>
-              <CtaButton href="/tutoring#pricing" variant="cta" size="about" arrow>
+            <div style={{ marginTop: 28 }}>
+              <CtaButton href="/tutoring#pricing" variant="ink" size="about" arrow>
                 Work with Scott
               </CtaButton>
             </div>
@@ -649,15 +479,7 @@ export default function HomePage() {
 
 /* ----------------------------- helpers ----------------------------- */
 
-function RoadStep({
-  step,
-  connectorDelay,
-  last,
-}: {
-  step: { icon: IconName; title: string; sub: string; delay: number };
-  connectorDelay: number;
-  last: boolean;
-}) {
+function RoadStep({ step, index }: { step: { icon: IconName; title: string; sub: string }; index: number }) {
   return (
     <>
       <div
@@ -666,53 +488,40 @@ function RoadStep({
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          width: 120,
+          width: 118,
           flex: "none",
           animation: "popIn .55s cubic-bezier(.22,1,.36,1) both",
-          animationDelay: `${step.delay}s`,
+          animationDelay: `${0.1 + index * 0.28}s`,
         }}
       >
         <span
           style={{
-            width: 60,
-            height: 60,
-            borderRadius: 18,
-            background: "var(--navy)",
-            color: "#fff",
+            width: 58,
+            height: 58,
+            borderRadius: 2,
+            background: "var(--card)",
+            color: "var(--ink)",
+            border: "2px solid var(--ink)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 3px 0 var(--navy-900)",
+            boxShadow: "3px 3px 0 var(--ink)",
           }}
         >
-          <Icon name={step.icon} size={26} />
+          <Icon name={step.icon} size={25} />
         </span>
-        <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14, color: "var(--navy)", marginTop: 12 }}>
+        <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.1em", color: "var(--accent)", marginTop: 12 }}>
+          {String(index + 1).padStart(2, "0")}
+        </div>
+        <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)", marginTop: 3 }}>
           {step.title}
         </div>
-        <div style={{ fontSize: 11.5, color: "var(--text-muted)", marginTop: 2 }}>{step.sub}</div>
+        <div style={{ fontSize: 11.5, color: "var(--ink-muted)", marginTop: 2 }}>{step.sub}</div>
       </div>
       <div
-        style={{
-          flex: 1,
-          height: 4,
-          borderRadius: 2,
-          background: "var(--line-200)",
-          marginTop: 28,
-          overflow: "hidden",
-          minWidth: 18,
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            background: last ? "linear-gradient(90deg,var(--brand),var(--gold))" : "var(--grad-xp)",
-            transformOrigin: "left",
-            animation: "growX .5s ease both",
-            animationDelay: `${connectorDelay}s`,
-          }}
-        />
-      </div>
+        aria-hidden
+        style={{ flex: 1, borderTop: "2px dashed rgba(26,35,62,.35)", marginTop: 29, minWidth: 16 }}
+      />
     </>
   );
 }
@@ -720,27 +529,19 @@ function RoadStep({
 function OfferingCard({
   href,
   iconName,
-  iconBg,
-  iconColor,
   title,
   sub,
   body,
   tags,
-  tagColor,
-  tagBg,
   cta,
   goldTop,
 }: {
   href: string;
   iconName: IconName;
-  iconBg: string;
-  iconColor: string;
   title: string;
   sub: string;
   body: string;
   tags: string[];
-  tagColor: string;
-  tagBg: string;
   cta: string;
   goldTop?: boolean;
 }) {
@@ -749,44 +550,63 @@ function OfferingCard({
       href={href}
       className="card-lift block"
       style={{
-        background: "#fff",
-        border: "1px solid var(--line-200)",
-        borderTop: goldTop ? "3px solid var(--gold)" : "1px solid var(--line-200)",
-        borderRadius: 20,
+        background: "var(--card)",
+        border: "2px solid var(--ink)",
+        borderTop: goldTop ? "6px solid var(--gold)" : "2px solid var(--ink)",
+        borderRadius: 3,
         padding: 28,
-        boxShadow: "var(--shadow-pop)",
         textDecoration: "none",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 13 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <span
           style={{
-            width: 52,
-            height: 52,
-            borderRadius: 15,
-            background: iconBg,
-            color: iconColor,
+            width: 50,
+            height: 50,
+            borderRadius: 2,
+            background: goldTop ? "var(--gold)" : "var(--tag)",
+            color: "var(--ink)",
+            border: "2px solid var(--ink)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             flex: "none",
           }}
         >
-          <Icon name={iconName} size={26} />
+          <Icon name={iconName} size={25} />
         </span>
         <div>
-          <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 22, color: "var(--navy)", letterSpacing: "-0.01em" }}>
-            {title}
+          <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 23, color: "var(--ink)" }}>{title}</div>
+          <div
+            style={{
+              fontFamily: "var(--font-mono-ui)",
+              fontSize: 10.5,
+              letterSpacing: "0.07em",
+              textTransform: "uppercase",
+              color: "var(--ink-muted)",
+              marginTop: 3,
+            }}
+          >
+            {sub}
           </div>
-          <div style={{ fontSize: 12.5, color: "var(--text-muted)" }}>{sub}</div>
         </div>
       </div>
-      <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--ink)", opacity: 0.9, margin: "16px 0 0" }}>{body}</p>
+      <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--ink-soft)", margin: "16px 0 0" }}>{body}</p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 16 }}>
         {tags.map((tag) => (
           <span
             key={tag}
-            style={{ fontSize: 11.5, fontWeight: 700, color: tagColor, background: tagBg, borderRadius: 999, padding: "5px 11px" }}
+            style={{
+              fontFamily: "var(--font-mono-ui)",
+              fontSize: 10.5,
+              fontWeight: 500,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              color: "var(--ink)",
+              border: "1.5px solid var(--ink)",
+              borderRadius: 2,
+              padding: "4px 9px",
+            }}
           >
             {tag}
           </span>
@@ -796,211 +616,178 @@ function OfferingCard({
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: 7,
-          marginTop: 20,
-          fontFamily: "var(--font-sans)",
-          fontWeight: 700,
-          fontSize: 14.5,
-          color: "var(--cta)",
+          gap: 8,
+          marginTop: 22,
+          fontFamily: "var(--font-mono-ui)",
+          fontWeight: 600,
+          fontSize: 12.5,
+          letterSpacing: "0.07em",
+          textTransform: "uppercase",
+          color: "var(--accent)",
         }}
       >
         {cta}
-        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
-          <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
     </Link>
   );
 }
 
-function WallOfWins() {
+/* ---- Results mosaic on the pine band: cream/ink/gold tiles ---- */
+
+function ScoreTile({ score, invert }: { score: (typeof SCORES)[number]; invert?: boolean }) {
+  const bg = invert ? "var(--navy-deep)" : "var(--card)";
+  const fg = invert ? "var(--cream)" : "var(--ink)";
+  const meta = invert ? "rgba(247,241,227,.6)" : "var(--ink-muted)";
   return (
     <div
       style={{
-        position: "relative",
-        overflow: "hidden",
-        marginTop: 40,
-        background: "var(--grad-panel)",
-        borderRadius: 22,
-        padding: 30,
+        background: bg,
+        border: "2px solid var(--ink)",
+        borderRadius: 3,
+        boxShadow: "5px 5px 0 var(--navy-ink)",
+        padding: "18px 20px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        minHeight: 150,
       }}
     >
+      <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 9.5, letterSpacing: "0.1em", textTransform: "uppercase", color: meta }}>
+        Total score
+      </div>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 6, flexWrap: "wrap" }}>
+        <CountUp
+          value={score.total}
+          style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 48, color: fg, lineHeight: 1 }}
+        />
+        <div style={{ display: "flex", gap: 14 }}>
+          {[
+            { k: "R/W", v: score.rw },
+            { k: "Math", v: score.math },
+          ].map((s) => (
+            <div key={s.k}>
+              <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 8.5, letterSpacing: "0.06em", textTransform: "uppercase", color: meta }}>
+                {s.k}
+              </div>
+              <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 16, color: fg, marginTop: 1 }}>{s.v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
       <div
-        aria-hidden
-        className="pointer-events-none"
         style={{
-          position: "absolute",
-          right: -30,
-          bottom: -70,
-          fontFamily: "var(--font-display)",
-          fontWeight: 900,
-          fontSize: 220,
-          lineHeight: 1,
-          letterSpacing: "-0.04em",
-          color: "rgba(255,255,255,.05)",
+          marginTop: 12,
+          paddingTop: 10,
+          borderTop: `2px dashed ${invert ? "rgba(247,241,227,.25)" : "rgba(26,35,62,.22)"}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 8,
         }}
       >
-        1500
-      </div>
-      <div style={{ position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-          <span style={{ color: "var(--gold)", display: "inline-flex" }}>
-            <Icon name="trophy" size={18} />
+        <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, color: meta }}>{score.date}</span>
+        {score.delta ? (
+          <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, fontWeight: 600, color: invert ? "var(--gold)" : "var(--accent)" }}>
+            {score.delta}
           </span>
-          <div
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function ResultsMosaic() {
+  return (
+    <div style={{ marginTop: 30 }}>
+      <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
+        {/* Gold hero metric */}
+        <div
+          className="sm:col-span-2"
+          style={{
+            background: "var(--gold)",
+            border: "2px solid var(--ink)",
+            borderRadius: 3,
+            boxShadow: "6px 6px 0 var(--navy-ink)",
+            padding: "22px 24px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            minHeight: 150,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
+            <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 30, color: "var(--ink)", lineHeight: 1 }}>+</span>
+            <CountUp
+              value={150}
+              style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 68, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1 }}
+            />
+          </div>
+          <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 18, color: "var(--ink)", marginTop: 8 }}>
+            average point gain
+          </div>
+          <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.05em", textTransform: "uppercase", color: "rgba(26,35,62,.66)", marginTop: 4 }}>
+            across 400+ students on 1-on-1 coaching
+          </div>
+        </div>
+
+        <ScoreTile score={SCORES[1]} invert />
+        <ScoreTile score={SCORES[2]} />
+        <ScoreTile score={SCORES[0]} />
+        <ScoreTile score={SCORES[3]} />
+
+        {/* Scott's own credential */}
+        <div
+          className="sm:col-span-2"
+          style={{
+            background: "var(--card)",
+            border: "2px solid var(--ink)",
+            borderRadius: 3,
+            boxShadow: "6px 6px 0 var(--navy-ink)",
+            padding: "22px 24px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            minHeight: 150,
+          }}
+        >
+          <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 9.5, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
+            Scott&apos;s own SAT
+          </div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginTop: 6, flexWrap: "wrap" }}>
+            <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 58, color: "var(--accent)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+              1580
+            </span>
+            <span style={{ fontFamily: "var(--font-serif-display)", fontStyle: "italic", fontWeight: 600, fontSize: 17, color: "var(--ink)" }}>
+              & four perfect 800s in Math
+            </span>
+          </div>
+          <div style={{ fontSize: 13, color: "var(--ink-muted)", marginTop: 8, maxWidth: "30em" }}>
+            You&apos;re learning the test from someone who has actually beaten it — four times over.
+          </div>
+        </div>
+      </div>
+
+      <div style={{ marginTop: 18, display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {["GRATEFUL FOR YOU BRO", "LFG", "1400 → COMING IN AUGUST"].map((tag) => (
+          <span
+            key={tag}
             style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "var(--sky)",
+              fontFamily: "var(--font-mono-ui)",
+              fontSize: 10.5,
+              fontWeight: 500,
+              letterSpacing: "0.05em",
+              color: "var(--cream)",
+              border: "1.5px solid rgba(247,241,227,.5)",
+              borderRadius: 2,
+              padding: "5px 11px",
             }}
           >
-            Wall of wins
-          </div>
-        </div>
-
-        <div className="columns-1 gap-[14px] sm:columns-2 lg:columns-3" style={{ marginTop: 16 }}>
-          {SCORES.map((s, i) => (
-            <div
-              key={i}
-              style={{
-                breakInside: "avoid",
-                marginBottom: 14,
-                background: "#fff",
-                borderRadius: 14,
-                padding: "15px 16px 13px",
-                boxShadow: "0 8px 22px rgba(7,25,59,.22)",
-              }}
-            >
-              <div style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-subtle)" }}>
-                Total score
-              </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginTop: 2 }}>
-                <CountUp
-                  value={s.total}
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    fontSize: 38,
-                    color: "var(--navy)",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1,
-                  }}
-                />
-                <div style={{ display: "flex", gap: 12 }}>
-                  <div>
-                    <div style={{ fontSize: 8.5, color: "var(--text-subtle)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                      Read/Write
-                    </div>
-                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--ink)", marginTop: 1 }}>
-                      {s.rw}
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 8.5, color: "var(--text-subtle)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-                      Math
-                    </div>
-                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--ink)", marginTop: 1 }}>
-                      {s.math}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                style={{
-                  marginTop: 11,
-                  paddingTop: 9,
-                  borderTop: "1px solid var(--line-150)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 8,
-                }}
-              >
-                <span style={{ fontSize: 11, color: "var(--text-muted)" }}>{s.date}</span>
-                {s.delta ? (
-                  <span
-                    style={{
-                      fontSize: 10.5,
-                      fontWeight: 700,
-                      color: "var(--success-600)",
-                      background: "var(--success-bg)",
-                      borderRadius: 999,
-                      padding: "2px 8px",
-                    }}
-                  >
-                    {s.delta}
-                  </span>
-                ) : null}
-              </div>
-            </div>
-          ))}
-
-          {[
-            { initial: "M", time: "8:54 AM", text: "Hi Scott! I wanted to share my score — literally your program helped so much." },
-            { initial: "R", time: "now", text: "Two-month progress — 1400 coming soon in August." },
-          ].map((msg) => (
-            <div
-              key={msg.initial}
-              style={{
-                breakInside: "avoid",
-                marginBottom: 14,
-                background: "var(--navy-900)",
-                border: "1px solid rgba(255,255,255,.08)",
-                borderRadius: 14,
-                padding: "14px 15px",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 8 }}>
-                <span
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: "50%",
-                    background: "var(--grad-avatar)",
-                    color: "#fff",
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    fontSize: 12,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flex: "none",
-                  }}
-                >
-                  {msg.initial}
-                </span>
-                <div>
-                  <div style={{ color: "#fff", fontSize: 12.5, fontWeight: 600 }}>Student</div>
-                  <div style={{ color: "var(--sky)", fontSize: 10.5 }}>{msg.time}</div>
-                </div>
-              </div>
-              <div style={{ color: "rgba(255,255,255,.9)", fontSize: 13.5, lineHeight: 1.5 }}>{msg.text}</div>
-            </div>
-          ))}
-
-          <div style={{ breakInside: "avoid", marginBottom: 14, display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {["GRATEFUL FOR YOU BRO", "LFG"].map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 800,
-                  fontSize: 12.5,
-                  letterSpacing: "0.02em",
-                  color: "var(--gold)",
-                  border: "1px solid rgba(255,189,32,.42)",
-                  borderRadius: 999,
-                  padding: "6px 13px",
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
+            {tag}
+          </span>
+        ))}
       </div>
     </div>
   );

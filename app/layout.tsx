@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
-import { Gabarito, DM_Sans } from "next/font/google";
+import { Fraunces, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 
-// Gabarito — display / wordmark / numerals. DM Sans — UI + body copy.
-const gabarito = Gabarito({
+// Fraunces — serif display (headlines, numerals, wordmark). DM Sans — body.
+// IBM Plex Mono — eyebrows, meta, buttons, checklists (the print voice).
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-gabarito",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -31,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${gabarito.variable} ${dmSans.variable} antialiased`}
+      className={`${fraunces.variable} ${dmSans.variable} ${plexMono.variable} antialiased`}
     >
       <body>
         <SiteNav />

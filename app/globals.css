@@ -1,157 +1,79 @@
 @import "tailwindcss";
 
 /*
-  1500 SAT Blueprint — marketing site tokens.
-  Two things live here:
-  1. A Tailwind v4 @theme so brand colors / fonts / radii are available as
-     utilities (text-navy, bg-haze, font-display, rounded-pop, ...).
-  2. The full design-system token set as :root custom properties, so the
-     ported section markup can reference var(--navy), var(--grad-hero),
-     var(--shadow-float) etc. exactly as authored in the handoff.
+  1500 SAT Blueprint — print-editorial system, brand palette.
+  Navy bands + cream paper + navy ink. Hard 2px ink borders, flat offset
+  shadows (no blur), 2-3px corners, serif headlines (Fraunces), mono meta
+  (IBM Plex Mono), cobalt accent, sky labels on navy, gold for rewards.
 */
 
 @theme inline {
   --font-sans: var(--font-dm-sans);
-  --font-display: var(--font-gabarito);
+  --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-plex-mono);
 
-  --color-navy: #0b2a5b;
-  --color-navy-700: #294879;
-  --color-navy-900: #07193b;
+  --color-paper: #f7f1e3;
+  --color-card: #fffdf6;
   --color-ink: #1a233e;
+  --color-navy: #0b2a5b;
+  --color-navy-deep: #07193b;
+  --color-accent: #2160c8;
   --color-brand: #3fa9f5;
-  --color-brand-600: #2b8fe0;
-  --color-brand-700: #2b6fd6;
   --color-sky: #7ccbff;
-  --color-ice: #ebf7ff;
-  --color-haze: #eef2f7;
-  --color-mist: #f5f8fc;
-  --color-tile: #eef3fb;
   --color-gold: #ffbd20;
   --color-gold-600: #f0a900;
-  --color-gold-700: #d99a00;
-  --color-success: #16a34a;
-  --color-success-600: #15803d;
-  --color-flag: #b45309;
 
   --radius-card: 3px;
   --radius-chip: 2px;
-  --radius-tile: 11px;
-  --radius-panel: 14px;
-  --radius-pop: 16px;
-  --radius-xl: 20px;
 }
 
 :root {
-  /* Brand — navy family */
-  --navy: #0b2a5b;
-  --navy-700: #294879;
-  --navy-900: #07193b;
+  /* Paper & ink (ink is a deep blueprint navy) */
+  --paper: #f7f1e3;
+  --card: #fffdf6;
+  --tag: #f2ead6;
   --ink: #1a233e;
-  --ink-title: #152347;
+  --ink-soft: rgba(26, 35, 62, 0.74);
+  --ink-muted: rgba(26, 35, 62, 0.56);
+  --ink-faint: rgba(26, 35, 62, 0.34);
+  --hairline: rgba(26, 35, 62, 0.16);
 
-  /* Brand — electric blue */
-  --brand: #3fa9f5;
-  --brand-600: #2b8fe0;
-  --brand-700: #2b6fd6;
-  --sky: #7ccbff;
+  /* Navy bands */
+  --navy: #0b2a5b;
+  --navy-deep: #07193b;
+  --navy-ink: #040c1f;
+  --cream: #f7f1e3;
+  --cream-soft: rgba(247, 241, 227, 0.78);
+  --cream-faint: rgba(247, 241, 227, 0.4);
 
-  /* Cool tints */
-  --ice: #ebf7ff;
-  --ice-200: #d7f8ff;
-  --haze: #eef2f7;
-  --mist: #f5f8fc;
-  --paper: #f3f4f6;
-  --tile: #eef3fb;
-
-  /* Gold */
+  /* Accents */
+  --accent: #2160c8; /* cobalt pen-mark */
+  --accent-press: #1c4fae;
+  --brand: #3fa9f5; /* electric blue — XP / progress */
+  --sky: #7ccbff; /* labels on navy */
   --gold: #ffbd20;
   --gold-600: #f0a900;
   --gold-700: #d99a00;
 
-  --white: #ffffff;
+  /* Hard print shadows (no blur) */
+  --shadow-card: 4px 4px 0 var(--ink);
+  --shadow-card-lg: 7px 7px 0 var(--ink);
+  --shadow-band: 6px 6px 0 var(--navy-ink);
 
-  /* Semantic feedback */
-  --success: #16a34a;
-  --success-600: #15803d;
-  --success-bg: #ecfdf5;
-  --danger: #dc2626;
-  --danger-600: #b91c1c;
-  --danger-bg: #fef2f2;
-  --flag: #b45309;
-  --flag-bg: #fffbeb;
-
-  /* Hairline borders (navy at low alpha) */
-  --line-100: rgba(11, 42, 91, 0.07);
-  --line-150: rgba(11, 42, 91, 0.1);
-  --line-200: rgba(11, 42, 91, 0.12);
-  --line-300: rgba(11, 42, 91, 0.15);
-  --line-400: rgba(11, 42, 91, 0.2);
-
-  /* Text aliases */
-  --text-muted: rgba(11, 42, 91, 0.55);
-  --text-subtle: rgba(11, 42, 91, 0.45);
-  --text-faint: rgba(11, 42, 91, 0.35);
-  --text-on-navy: rgba(255, 255, 255, 0.7);
-  --border-strong: var(--line-400);
-
-  /* Signature gradients */
-  --grad-hero:
-    linear-gradient(110deg, transparent 36%, rgba(124, 203, 255, 0.22) 44%, transparent 52%),
-    linear-gradient(125deg, transparent 56%, rgba(124, 203, 255, 0.16) 63%, transparent 70%),
-    linear-gradient(130deg, #07193b 0%, #0b2a5b 42%, #1b46a8 74%, #0b2a5b 100%);
-  --grad-panel: linear-gradient(135deg, #0b2a5b, #1b46a8);
-  --grad-xp: linear-gradient(90deg, #3fa9f5, #2b8fe0);
-  --grad-gold: linear-gradient(135deg, #ffbd20, #f0a900);
-  --grad-avatar: linear-gradient(135deg, #3fa9f5, #0b2a5b);
-
-  /* Elevation */
-  --shadow-raised: 0 1px 2px rgba(11, 42, 91, 0.05);
-  --shadow-pop: 0 1px 3px rgba(11, 42, 91, 0.05), 0 16px 32px -22px rgba(11, 42, 91, 0.35);
-  --shadow-float: 0 12px 40px rgba(7, 25, 59, 0.12);
-  --shadow-menu: 0 10px 30px -6px rgba(7, 25, 59, 0.22);
-
-  --radius-tile: 11px;
-
-  /* Fonts (bound to next/font vars set on <html>) */
-  --font-display: var(--font-gabarito);
-  --font-sans: var(--font-dm-sans);
-
-  /* Theme knobs from the prototype — cobalt primary (default). */
-  --cta: #2b6fd6;
-  --cta-h: #245fc4;
-  --cta-push: #1c4fae;
-  --ghost-op: 0.06;
+  /* Fonts (bound to next/font vars on <html>) */
+  --font-serif-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-mono-ui: var(--font-plex-mono), "Courier New", monospace;
 }
 
-/* Animated custom properties (conic beam sweep + score ring fill). */
-@property --beam {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
+/* Animated ring fill (tutoring score ring). */
 @property --ring {
   syntax: "<percentage>";
   inherits: false;
   initial-value: 78%;
 }
-
-@keyframes beamspin {
-  to {
-    --beam: 360deg;
-  }
-}
 @keyframes ringfill {
   from {
     --ring: 0%;
-  }
-}
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
   }
 }
 @keyframes popIn {
@@ -165,14 +87,6 @@
   100% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-@keyframes growX {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }
 @keyframes flicker {
@@ -193,22 +107,31 @@ html {
 
 body {
   margin: 0;
-  background: var(--haze);
+  background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-dm-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 a {
-  color: var(--brand-700);
+  color: var(--accent);
   text-decoration: none;
 }
 a:hover {
-  color: var(--navy);
+  color: var(--accent-press);
 }
 
-/* Anchored sections clear the sticky nav on scroll. */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 section[id],
 [data-anchor] {
   scroll-margin-top: 84px;
@@ -224,173 +147,186 @@ section[id],
 }
 
 /* ------------------------------------------------------------------ *
-   Interactive states (the prototype's style-hover / style-active).
+   Interactive pieces — print style.
  * ------------------------------------------------------------------ */
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-family: var(--font-sans);
-  font-weight: 700;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-mono-ui);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border: 2px solid var(--ink);
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  border: none;
-  transition: background-color 0.15s, transform 0.05s, box-shadow 0.05s;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s;
 }
 
-/* Cobalt "pushable" primary CTA — sinks on press like a physical key. */
-.btn-cta {
-  background: var(--cta);
-  color: #fff;
-  box-shadow: 0 3px 0 var(--cta-push);
+/* Solid ink button (on cream). */
+.btn-ink {
+  background: var(--ink);
+  color: var(--paper);
 }
-.btn-cta:hover {
-  background: var(--cta-h);
-  color: #fff;
+.btn-ink:hover {
+  background: #273356;
+  color: var(--paper);
 }
-.btn-cta:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 var(--cta-push);
+.btn-ink:active {
+  transform: translate(1px, 1px);
 }
 
-/* Smaller pushable variant (nav). */
-.btn-cta-sm {
-  background: var(--cta);
-  color: #fff;
-  box-shadow: 0 2px 0 var(--cta-push);
+/* Cream button with a hard shadow (navy bands). */
+.btn-cream {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--navy-ink);
 }
-.btn-cta-sm:hover {
-  background: var(--cta-h);
-  color: #fff;
+.btn-cream:hover {
+  background: #fff;
+  color: var(--ink);
 }
-.btn-cta-sm:active {
-  transform: translateY(1px);
-  box-shadow: none;
+.btn-cream:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--navy-ink);
 }
 
-/* Glassy secondary on dark bands. */
+/* Ghost on navy. */
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  font-weight: 600;
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--cream-faint);
 }
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(247, 241, 227, 0.1);
+  color: var(--cream);
+  border-color: var(--cream);
 }
 
-/* Outline secondary on light surfaces. */
+/* Outline on cream. */
 .btn-outline {
-  background: #fff;
-  color: var(--navy);
-  border: 1.5px solid var(--border-strong);
+  background: transparent;
+  color: var(--ink);
 }
 .btn-outline:hover {
-  background: rgba(11, 42, 91, 0.05);
-  color: var(--navy);
+  background: var(--tag);
+  color: var(--ink);
+}
+.btn-outline:active {
+  transform: translate(1px, 1px);
 }
 
-/* Nav links. */
+/* Nav links — mono, uppercase. */
 .link-nav {
-  font-family: var(--font-sans);
-  font-size: 14px;
+  font-family: var(--font-mono-ui);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
   text-decoration: none;
   transition: color 0.15s;
-  cursor: pointer;
 }
 .link-nav:hover {
-  color: var(--brand-700);
+  color: var(--accent);
 }
 
 /* Footer links. */
 .link-foot {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--cream-soft);
   text-decoration: none;
   transition: color 0.15s;
 }
 .link-foot:hover {
-  color: #fff;
+  color: var(--cream);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-/* Offering cards lift on hover. */
+/* Cards that lift: hard shadow grows, card shifts up-left. */
 .card-lift {
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .card-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 1px 3px rgba(11, 42, 91, 0.05), 0 24px 44px -24px rgba(11, 42, 91, 0.5);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
-/* Feature tiles lift slightly on hover. */
 .tile-lift {
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .tile-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-pop);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
 }
 
-/* Carousel arrow buttons. */
+/* Carousel arrows — square, ink border. */
 .icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--border-strong);
-  background: #fff;
-  color: var(--navy);
+  border-radius: 2px;
+  border: 2px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
   cursor: pointer;
   transition: background-color 0.15s;
 }
 .icon-btn:hover {
-  background: var(--ice);
+  background: var(--tag);
 }
 
-/* Footer social squares. */
-.foot-social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.75);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 11px;
-  text-decoration: none;
-  transition: background-color 0.15s, color 0.15s;
-}
-.foot-social:hover {
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
+/* Tilted paper scrap (section tags). */
+.paper-tag {
+  display: inline-block;
+  background: var(--tag);
+  padding: 7px 14px;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 rgba(26, 35, 62, 0.85);
+  font-family: var(--font-serif-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  transform: rotate(-2deg);
 }
 
-/* Faint underline links (e.g. "More details" inside the guarantee box). */
-.link-quiet {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.15s;
+/* Dashed print rule. */
+.dashed-rule {
+  border: none;
+  border-top: 2px dashed rgba(26, 35, 62, 0.28);
+  margin: 0;
 }
 
-/* "or skip the call and enroll now" — muted, centered, underlined. */
+/* "or skip the call and enroll now" */
 .enroll-link {
   display: block;
   text-align: center;
   margin-top: 10px;
-  font-size: 12.5px;
-  color: var(--text-muted);
+  font-family: var(--font-mono-ui);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
   transition: color 0.15s;
 }
 .enroll-link:hover {
-  color: var(--navy);
+  color: var(--ink);
+}
+
+.link-quiet {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
 }

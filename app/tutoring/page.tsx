@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
@@ -17,183 +16,150 @@ export const metadata: Metadata = {
 };
 
 const eyebrow = {
-  fontFamily: "var(--font-sans)",
-  fontSize: 12,
+  fontFamily: "var(--font-mono-ui)",
+  fontSize: 11.5,
   fontWeight: 600,
   letterSpacing: "0.14em",
   textTransform: "uppercase" as const,
-  color: "var(--brand-700)",
+  color: "var(--accent)",
 };
 
-function PriceLi({ children }: { children: ReactNode }) {
-  return (
-    <li style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)" }}>
-      <Check size={19} />
-      <span>{children}</span>
-    </li>
-  );
-}
+const serifH = {
+  fontFamily: "var(--font-serif-display)",
+  fontWeight: 600,
+  letterSpacing: "-0.015em",
+  color: "var(--ink)",
+};
 
-const cardHeaderTitle = {
-  fontFamily: "var(--font-display)",
-  fontWeight: 800,
-  fontSize: 20,
-  color: "var(--navy)",
-  letterSpacing: "-0.01em",
-} as const;
-const cardHeaderSub = { fontSize: 12.5, color: "var(--text-muted)" } as const;
-const priceMain = {
-  fontFamily: "var(--font-display)",
-  fontWeight: 800,
-  fontSize: 40,
-  color: "var(--navy)",
-  letterSpacing: "-0.02em",
-  lineHeight: 1,
-} as const;
-const priceWas = { fontSize: 17, color: "var(--text-subtle)", textDecoration: "line-through" } as const;
-const iconTile40 = {
-  width: 40,
-  height: 40,
-  borderRadius: 11,
-  background: "var(--tile)",
-  color: "var(--brand-700)",
+const ruled = { borderTop: "2px solid var(--ink)" };
+
+const monoItem = {
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flex: "none",
+  gap: 10,
+  alignItems: "flex-start",
+  fontFamily: "var(--font-mono-ui)",
+  fontSize: 12.5,
+  lineHeight: 1.55,
+  color: "var(--ink)",
 } as const;
-const muted = { color: "var(--text-muted)" } as const;
+
+/* Parker-style tiers: serif name + price, dashed rules, mono details. */
+const TIERS: {
+  name: string;
+  who: string;
+  price: string;
+  was: string;
+  items: string[];
+  cta: string;
+  popular?: boolean;
+  guarantee?: boolean;
+}[] = [
+  {
+    name: "The Essentials",
+    who: "For getting started with a clear plan",
+    price: "$595",
+    was: "$700",
+    items: ["2 hours of 1-on-1 sessions", "3 months of The 1500 Blueprint ($210 value)"],
+    cta: "Get Started",
+  },
+  {
+    name: "The Accelerator",
+    who: "For fast progress before your test date",
+    price: "$1,395",
+    was: "$1,690",
+    items: [
+      "6 hours of 1-on-1 sessions",
+      "Custom step-by-step roadmap + weekly assignments",
+      "6 months of The 1500 Blueprint ($420 value)",
+      "Add hours anytime at $185/hr",
+    ],
+    cta: "Book a free call",
+    popular: true,
+  },
+  {
+    name: "The Guarantee",
+    who: "For a serious score jump, backed in writing",
+    price: "$2,495",
+    was: "$3,280",
+    items: [
+      "12 hours of 1-on-1 sessions (priority scheduling)",
+      "Everything in The Accelerator",
+      "12 months of The 1500 Blueprint ($840 value)",
+      "Add hours anytime at $175/hr",
+    ],
+    cta: "Book a free call",
+    guarantee: true,
+  },
+];
+
+const INCLUDED = [
+  "A diagnostic that finds your exact weak spots",
+  "A written study plan, updated as you improve",
+  "Weekly reviews & accountability between sessions",
+  "Math, Desmos, Reading & Grammar — every section",
+  "Full access to The 1500 Blueprint system",
+  "Access to Scott's SAT predictions ($100 value)",
+  "Direct line to Scott — never a rotating tutor",
+];
 
 export default function TutoringPage() {
   return (
     <main>
       {/* ============================ HEADER ============================ */}
-      <section className="bg-haze py-16 lg:pb-[84px] lg:pt-16">
+      <section className="py-16 lg:py-[80px]">
         <div
-          className="mx-auto grid grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)] lg:gap-[56px]"
+          className="mx-auto grid grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)] lg:gap-[56px]"
           style={{ maxWidth: 1160 }}
         >
           <Reveal>
             <div style={eyebrow}>Private SAT tutoring</div>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(34px,4.6vw,52px)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.025em",
-                color: "var(--navy)",
-                margin: "14px 0 0",
-              }}
-            >
-              1-on-1 Coaching
-            </h1>
-            <p style={{ fontSize: 18, lineHeight: 1.5, color: "var(--navy)", fontWeight: 600, margin: "14px 0 0" }}>
-              Built for{" "}
-              <span style={{ background: "var(--gold)", color: "var(--navy)", padding: "1px 8px", borderRadius: 4 }}>your</span>{" "}
+            <h1 style={{ ...serifH, fontSize: "clamp(36px,4.8vw,56px)", lineHeight: 1.03, margin: "14px 0 0" }}>
+              1-on-1 coaching, built for{" "}
+              <span style={{ background: "var(--gold)", padding: "0 10px", boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>
+                <em style={{ fontStyle: "italic" }}>your</em>
+              </span>{" "}
               exact situation.
-            </p>
-            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: "var(--ink)", opacity: 0.9, maxWidth: "33em", margin: "14px 0 0" }}>
+            </h1>
+            <p style={{ fontSize: 16.5, lineHeight: 1.62, color: "var(--ink-soft)", maxWidth: "33em", margin: "18px 0 0" }}>
               Work directly with Scott to master the Digital SAT through custom strategy, weekly
               reviews, and a plan built around your exact weaknesses.
             </p>
             <div style={{ marginTop: 26 }}>
-              <CtaButton href="#pricing" variant="cta" size="md" arrow>
+              <CtaButton href="#pricing" variant="ink" size="md" arrow>
                 Apply for Coaching
               </CtaButton>
             </div>
           </Reveal>
 
-          <Reveal delay={90} style={{ position: "relative" }}>
+          <Reveal delay={90}>
             <div
               style={{
-                borderRadius: 16,
-                overflow: "hidden",
-                boxShadow: "var(--shadow-float)",
-                border: "1px solid var(--line-200)",
-                background: "#0a1f45",
+                background: "var(--card)",
+                border: "2px solid var(--ink)",
+                borderRadius: 3,
+                boxShadow: "var(--shadow-card-lg)",
+                padding: 12,
+                transform: "rotate(-0.8deg)",
               }}
             >
-              <div
-                style={{
-                  height: 32,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 7,
-                  padding: "0 13px",
-                  background: "rgba(255,255,255,.04)",
-                  borderBottom: "1px solid rgba(255,255,255,.08)",
-                }}
-              >
-                <span style={{ width: 9, height: 9, borderRadius: "50%", background: "rgba(255,255,255,.3)" }} />
-                <span style={{ width: 9, height: 9, borderRadius: "50%", background: "rgba(255,255,255,.3)" }} />
-                <span style={{ width: 9, height: 9, borderRadius: "50%", background: "rgba(255,255,255,.3)" }} />
-                <span style={{ marginLeft: 8, color: "rgba(255,255,255,.6)", fontSize: 11 }}>Live session · Desmos</span>
+              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}>
+                <ImageSlot label="Live session — Desmos strategy" />
               </div>
-              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10", background: "#12305c" }}>
-                <ImageSlot tone="dark" label="Drop a tutoring session video or screenshot" />
-                <div style={{ position: "absolute", left: 16, bottom: 16, pointerEvents: "none" }}>
-                  <span
-                    style={{
-                      width: 52,
-                      height: 52,
-                      borderRadius: "50%",
-                      background: "rgba(43,111,214,.95)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      boxShadow: "0 10px 30px rgba(7,25,59,.5)",
-                    }}
-                  >
-                    <Icon name="play" size={22} style={{ color: "#fff", marginLeft: 3 }} />
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                position: "absolute",
-                left: -16,
-                bottom: -16,
-                background: "#fff",
-                borderRadius: 14,
-                boxShadow: "var(--shadow-pop)",
-                padding: "11px 15px",
-                display: "flex",
-                gap: 11,
-                alignItems: "center",
-                border: "1px solid var(--line-150)",
-              }}
-            >
-              <span
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 11,
-                  background: "var(--tile)",
-                  color: "var(--brand-700)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flex: "none",
-                }}
-              >
-                <Icon name="history" size={20} />
-              </span>
-              <div>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--navy)", lineHeight: 1.1 }}>
-                  Weekly reviews
-                </div>
-                <div style={{ fontSize: 11.5, color: "var(--text-muted)" }}>accountability that sticks</div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 4px 2px" }}>
+                <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
+                  Weekly reviews — accountability that sticks
+                </span>
+                <span style={{ display: "inline-flex", color: "var(--ink)" }}>
+                  <Icon name="history" size={16} />
+                </span>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ==================== FEATURE TILES + SCORE RING ==================== */}
-      <section className="bg-white py-16 lg:py-[80px]">
+      {/* ==================== FEATURES + SCORE RING ==================== */}
+      <section className="py-16 lg:py-[84px]" style={ruled}>
         <div
           className="mx-auto grid grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,.75fr)] lg:gap-[48px]"
           style={{ maxWidth: 1160 }}
@@ -201,17 +167,7 @@ export default function TutoringPage() {
           <div>
             <Reveal style={{ marginBottom: 28 }}>
               <div style={eyebrow}>What you get</div>
-              <h2
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 800,
-                  fontSize: "clamp(26px,3.2vw,36px)",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.02em",
-                  color: "var(--navy)",
-                  margin: "10px 0 0",
-                }}
-              >
+              <h2 style={{ ...serifH, fontSize: "clamp(26px,3.2vw,38px)", lineHeight: 1.08, margin: "12px 0 0" }}>
                 Coaching built around you.
               </h2>
             </Reveal>
@@ -224,33 +180,33 @@ export default function TutoringPage() {
                     display: "flex",
                     gap: 13,
                     alignItems: "flex-start",
-                    background: "#fff",
-                    border: "1px solid var(--line-200)",
-                    borderRadius: 16,
+                    background: "var(--card)",
+                    border: "2px solid var(--ink)",
+                    borderRadius: 3,
                     padding: 18,
-                    boxShadow: "var(--shadow-raised)",
                   }}
                 >
                   <span
                     style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: 13,
-                      background: "var(--tile)",
-                      color: "var(--brand-700)",
+                      width: 42,
+                      height: 42,
+                      borderRadius: 2,
+                      background: "var(--tag)",
+                      color: "var(--ink)",
+                      border: "2px solid var(--ink)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       flex: "none",
                     }}
                   >
-                    <Icon name={f.icon} size={23} />
+                    <Icon name={f.icon} size={21} />
                   </span>
                   <div>
-                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15.5, color: "var(--navy)", lineHeight: 1.25 }}>
+                    <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)", lineHeight: 1.25 }}>
                       {f.title}
                     </div>
-                    <div style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.5, marginTop: 3 }}>{f.desc}</div>
+                    <div style={{ fontSize: 13, color: "var(--ink-muted)", lineHeight: 1.55, marginTop: 4 }}>{f.desc}</div>
                   </div>
                 </Reveal>
               ))}
@@ -260,69 +216,81 @@ export default function TutoringPage() {
           <Reveal
             delay={100}
             style={{
-              background: "linear-gradient(180deg,#fff,var(--mist))",
-              border: "1px solid var(--line-200)",
-              borderRadius: 22,
+              background: "var(--card)",
+              border: "2px solid var(--ink)",
+              borderRadius: 3,
+              boxShadow: "var(--shadow-card)",
               padding: 30,
               textAlign: "center",
-              boxShadow: "var(--shadow-raised)",
             }}
           >
-            <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--brand-700)" }}>
+            <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
               Average student
             </div>
-            <div style={{ position: "relative", width: 184, height: 184, margin: "18px auto 0" }}>
+            <div style={{ position: "relative", width: 184, height: 184, margin: "20px auto 0" }}>
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   borderRadius: "50%",
-                  background: "conic-gradient(var(--brand) var(--ring,78%), var(--line-200) 0)",
+                  background: "conic-gradient(var(--accent) var(--ring,78%), rgba(26,35,62,.12) 0)",
                   animation: "ringfill 1.4s cubic-bezier(.22,1,.36,1) both",
                 }}
               />
               <div
                 style={{
                   position: "absolute",
-                  inset: 14,
+                  inset: 13,
                   borderRadius: "50%",
-                  background: "#fff",
-                  boxShadow: "var(--shadow-raised)",
+                  background: "var(--card)",
+                  border: "2px solid var(--ink)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 20, color: "var(--success-600)", lineHeight: 1 }}>
+                <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 30, color: "var(--accent)", lineHeight: 1 }}>
                   +<CountUp value={150} />
                 </div>
-                <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>points</div>
+                <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)", marginTop: 4 }}>
+                  points
+                </div>
               </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "center", gap: 7, marginTop: 20, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--text-muted)", background: "rgba(11,42,91,.06)", borderRadius: 999, padding: "4px 9px" }}>
-                Bronze
-              </span>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--brand-600)", background: "var(--ice)", borderRadius: 999, padding: "4px 9px" }}>
-                Silver
-              </span>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--flag)", background: "#fff7e6", border: "1px solid rgba(240,169,0,.35)", borderRadius: 999, padding: "4px 9px" }}>
-                1500 Club
-              </span>
+            <div style={{ display: "flex", justifyContent: "center", gap: 7, marginTop: 22, flexWrap: "wrap" }}>
+              {["Bronze", "Silver", "1500 Club"].map((tier, i) => (
+                <span
+                  key={tier}
+                  style={{
+                    fontFamily: "var(--font-mono-ui)",
+                    fontSize: 9.5,
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--ink)",
+                    background: i === 2 ? "var(--gold)" : "transparent",
+                    border: "1.5px solid var(--ink)",
+                    borderRadius: 2,
+                    padding: "4px 9px",
+                  }}
+                >
+                  {tier}
+                </span>
+              ))}
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ========================= COMPACT PROOF ========================= */}
-      <section className="bg-haze py-16">
+      <section className="py-14" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
           <Reveal style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
             <div>
               <div style={eyebrow}>Proof it works</div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 22, color: "var(--navy)", marginTop: 6 }}>
-                400+ students · avg +150 points
+              <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 24, color: "var(--ink)", marginTop: 8 }}>
+                400+ students · avg <em style={{ fontStyle: "italic", color: "var(--accent)" }}>+150 points</em>
               </div>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
@@ -332,19 +300,21 @@ export default function TutoringPage() {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 8,
-                    background: "#fff",
-                    border: "1px solid var(--line-200)",
-                    borderRadius: 14,
-                    padding: "12px 16px",
-                    boxShadow: "var(--shadow-raised)",
+                    gap: 9,
+                    background: "var(--card)",
+                    border: "2px solid var(--ink)",
+                    borderRadius: 2,
+                    padding: "10px 14px",
+                    boxShadow: "3px 3px 0 var(--ink)",
+                    fontFamily: "var(--font-mono-ui)",
+                    fontSize: 14,
                   }}
                 >
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--text-muted)" }}>{p.from}</span>
-                  <svg viewBox="0 0 24 24" width="15" height="15" style={{ color: "var(--text-subtle)" }} aria-hidden="true">
-                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17, color: "var(--success-600)" }}>{p.to}</span>
+                  <span style={{ color: "var(--ink-muted)" }}>{p.from}</span>
+                  <span aria-hidden style={{ color: "var(--accent)", fontWeight: 600 }}>
+                    →
+                  </span>
+                  <span style={{ fontWeight: 600, color: "var(--ink)" }}>{p.to}</span>
                 </div>
               ))}
             </div>
@@ -352,213 +322,49 @@ export default function TutoringPage() {
         </div>
       </section>
 
-      {/* ============================ PRICING ============================ */}
-      <section id="pricing" className="bg-white py-16 lg:py-[88px]">
+      {/* ================= PRICING (pine band, Parker layout) ================= */}
+      <section id="pricing" className="py-16 lg:py-[88px]" style={{ ...ruled, background: "var(--navy)" }}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <Reveal style={{ textAlign: "center", maxWidth: "38em", margin: "0 auto" }}>
-            <div style={eyebrow}>Pricing</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(30px,3.6vw,42px)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
-              Pick the plan that matches your goal.
-            </h2>
-            <p style={{ fontSize: 16.5, lineHeight: 1.6, color: "var(--ink)", opacity: 0.9, margin: "14px 0 0" }}>
+          <Reveal style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 20 }}>
+            <div style={{ maxWidth: "30em" }}>
+              <span className="paper-tag">
+                Plans built for <b style={{ color: "var(--accent)" }}>your</b> goal.
+              </span>
+              <h2 style={{ ...serifH, color: "var(--cream)", fontSize: "clamp(28px,3.4vw,42px)", lineHeight: 1.08, margin: "22px 0 0" }}>
+                Pick the plan that matches your target score.
+              </h2>
+            </div>
+            <p style={{ fontSize: 14.5, lineHeight: 1.6, color: "var(--cream-soft)", maxWidth: "24em", margin: 0 }}>
               Every plan is built for the new Digital SAT and personalized to your exact weak spots.
             </p>
           </Reveal>
 
-          <div className="mt-11 grid grid-cols-1 items-start gap-[22px] lg:grid-cols-3">
-            {/* Essentials */}
+          <div className="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.35fr)]">
+            {/* What's included in every plan */}
             <Reveal
               style={{
-                display: "flex",
-                flexDirection: "column",
-                background: "#fff",
-                border: "1px solid var(--line-200)",
-                borderRadius: 20,
-                padding: 28,
-                boxShadow: "var(--shadow-raised)",
+                background: "var(--card)",
+                border: "2px solid var(--ink)",
+                borderRadius: 3,
+                boxShadow: "6px 6px 0 var(--navy-ink)",
+                padding: 26,
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-                <span style={iconTile40}>
-                  <Icon name="zap" size={20} />
-                </span>
-                <div>
-                  <div style={cardHeaderTitle}>The Essentials</div>
-                  <div style={cardHeaderSub}>Best for getting started</div>
-                </div>
+              <h3 style={{ ...serifH, fontSize: 26, margin: 0 }}>What&apos;s included</h3>
+              <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)", marginTop: 6 }}>
+                in every plan
               </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 20 }}>
-                <span style={priceMain}>$595</span>
-                <span style={priceWas}>$700</span>
-              </div>
-              <ul style={{ listStyle: "none", margin: "22px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
-                <PriceLi>
-                  <b style={{ color: "var(--navy)" }}>2 hours</b> of 1-on-1 sessions
-                </PriceLi>
-                <PriceLi>A clear study plan for your exact situation</PriceLi>
-                <PriceLi>
-                  3 months of The 1500 Blueprint <span style={muted}>($210 value)</span>
-                </PriceLi>
-                <PriceLi>
-                  Access to my SAT predictions <span style={muted}>($100 value)</span>
-                </PriceLi>
+              <hr className="dashed-rule" style={{ margin: "18px 0" }} />
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+                {INCLUDED.map((item) => (
+                  <li key={item} style={monoItem}>
+                    <Check size={14} />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
-              <div style={{ marginTop: 24 }}>
-                {/* TODO: wire to Stripe Checkout / booking */}
-                <CtaButton href="#pricing" variant="cta" size="card">
-                  Get Started
-                </CtaButton>
-              </div>
-            </Reveal>
-
-            {/* Accelerator — most popular, animated beam border */}
-            <Reveal
-              delay={90}
-              style={{
-                position: "relative",
-                borderRadius: 22,
-                padding: 2,
-                overflow: "hidden",
-                background: "rgba(63,169,245,.28)",
-                boxShadow: "var(--shadow-pop)",
-              }}
-            >
-              <div
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: 22,
-                  background:
-                    "conic-gradient(from var(--beam), rgba(63,169,245,0) 0deg, rgba(63,169,245,0) 250deg, #7ccbff 300deg, #3fa9f5 330deg, #7ccbff 350deg, rgba(63,169,245,0) 360deg)",
-                  animation: "beamspin 4.2s linear infinite",
-                }}
-              />
-              <div
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  flexDirection: "column",
-                  background: "#fff",
-                  borderRadius: 20,
-                  padding: 28,
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: -13,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    background: "linear-gradient(135deg,var(--gold),var(--gold-600))",
-                    color: "var(--navy)",
-                    fontFamily: "var(--font-sans)",
-                    fontWeight: 800,
-                    fontSize: 10.5,
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    padding: "6px 14px",
-                    borderRadius: 999,
-                    boxShadow: "0 6px 16px rgba(240,169,0,.35)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Most popular
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-                  <span style={iconTile40}>
-                    <Icon name="target" size={21} />
-                  </span>
-                  <div>
-                    <div style={cardHeaderTitle}>The Accelerator</div>
-                    <div style={cardHeaderSub}>Best for fast progress</div>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 20 }}>
-                  <span style={priceMain}>$1,395</span>
-                  <span style={priceWas}>$1,690</span>
-                </div>
-                <ul style={{ listStyle: "none", margin: "22px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
-                  <PriceLi>
-                    <b style={{ color: "var(--navy)" }}>6 hours</b> of 1-on-1 sessions
-                  </PriceLi>
-                  <PriceLi>A custom step-by-step roadmap with weekly assignments</PriceLi>
-                  <PriceLi>
-                    6 months of The 1500 Blueprint <span style={muted}>($420 value)</span>
-                  </PriceLi>
-                  <PriceLi>
-                    Access to my SAT predictions <span style={muted}>($100 value)</span>
-                  </PriceLi>
-                  <PriceLi>Add hours anytime at $185/hr</PriceLi>
-                </ul>
-                <div style={{ marginTop: 24 }}>
-                  <CtaButton href="#pricing" variant="cta" size="card">
-                    Book a free call
-                  </CtaButton>
-                </div>
-                <Link href="#pricing" className="enroll-link">
-                  or skip the call and enroll now
-                </Link>
-              </div>
-            </Reveal>
-
-            {/* Guarantee */}
-            <Reveal
-              delay={180}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                background: "#fff",
-                border: "1px solid var(--line-200)",
-                borderRadius: 20,
-                padding: 28,
-                boxShadow: "var(--shadow-raised)",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-                <span style={iconTile40}>
-                  <Icon name="trophy" size={21} />
-                </span>
-                <div>
-                  <div style={cardHeaderTitle}>The Guarantee</div>
-                  <div style={cardHeaderSub}>Best for a serious score jump</div>
-                </div>
-              </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 20 }}>
-                <span style={priceMain}>$2,495</span>
-                <span style={priceWas}>$3,280</span>
-              </div>
-              <ul style={{ listStyle: "none", margin: "22px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
-                <PriceLi>
-                  <b style={{ color: "var(--navy)" }}>12 hours</b> of 1-on-1 sessions (priority scheduling)
-                </PriceLi>
-                <PriceLi>Everything in The Accelerator plan</PriceLi>
-                <PriceLi>
-                  12 months of The 1500 Blueprint <span style={muted}>($840 value)</span>
-                </PriceLi>
-                <PriceLi>Add hours anytime at $175/hr</PriceLi>
-              </ul>
-              <div
-                style={{
-                  marginTop: 16,
-                  background: "#fff7e6",
-                  border: "1px solid rgba(240,169,0,.35)",
-                  borderRadius: 12,
-                  padding: "12px 14px",
-                  display: "flex",
-                  gap: 10,
-                }}
-              >
+              <hr className="dashed-rule" style={{ margin: "18px 0" }} />
+              <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                 <span style={{ flex: "none", color: "var(--gold-600)", marginTop: 1 }}>
                   <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                     <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
@@ -567,68 +373,129 @@ export default function TutoringPage() {
                     </g>
                   </svg>
                 </span>
-                <div style={{ fontSize: 12.5, lineHeight: 1.5, color: "var(--ink)" }}>
-                  <b style={{ color: "var(--navy)" }}>100+ Point Guarantee.</b> If your score doesn&apos;t improve by at
-                  least 100 points, or reach 1450+, by the end of the program, you get your money back.{" "}
-                  <Link href="#faq" className="link-quiet" style={{ color: "var(--brand-700)" }}>
-                    More details
+                <div style={{ fontSize: 13, lineHeight: 1.55, color: "var(--ink-soft)" }}>
+                  <b style={{ color: "var(--ink)" }}>100+ Point Guarantee</b> on The Guarantee plan:
+                  improve by 100+ points (or reach 1450+) or your money back.{" "}
+                  <Link href="#faq" className="link-quiet" style={{ color: "var(--accent)" }}>
+                    Details
                   </Link>
-                  .
                 </div>
               </div>
-              <div style={{ marginTop: 20 }}>
-                <CtaButton href="#pricing" variant="cta" size="card">
-                  Book a free call
-                </CtaButton>
-              </div>
-              <Link href="#pricing" className="enroll-link">
-                or skip the call and enroll now
-              </Link>
             </Reveal>
-          </div>
 
-          {/* On-demand band */}
-          <Reveal
-            style={{
-              marginTop: 22,
-              background: "var(--ice)",
-              border: "1px solid var(--line-150)",
-              borderRadius: 16,
-              padding: "18px 24px",
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 14,
-            }}
-          >
-            <div style={{ fontSize: 15.5, color: "var(--ink)" }}>
-              <b style={{ color: "var(--navy)" }}>Just need an hour?</b> Book an on-demand session for{" "}
-              <b style={{ color: "var(--navy)" }}>$195/hr</b>.
+            {/* Tier cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {TIERS.map((tier, i) => (
+                <Reveal
+                  key={tier.name}
+                  delay={i * 80}
+                  style={{
+                    position: "relative",
+                    background: "var(--card)",
+                    border: tier.popular ? "3px solid var(--gold)" : "2px solid var(--ink)",
+                    borderRadius: 3,
+                    boxShadow: "6px 6px 0 var(--navy-ink)",
+                    padding: "24px 26px",
+                  }}
+                >
+                  {tier.popular ? (
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: -13,
+                        right: 20,
+                        fontFamily: "var(--font-mono-ui)",
+                        fontWeight: 600,
+                        fontSize: 10,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        background: "var(--gold)",
+                        color: "var(--ink)",
+                        border: "2px solid var(--ink)",
+                        borderRadius: 2,
+                        padding: "4px 10px",
+                        transform: "rotate(1.5deg)",
+                      }}
+                    >
+                      Most popular
+                    </span>
+                  ) : null}
+
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                    <h3 style={{ ...serifH, fontSize: 27, margin: 0 }}>{tier.name}</h3>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+                      <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 34, color: "var(--ink)", lineHeight: 1 }}>
+                        {tier.price}
+                      </span>
+                      <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 13, color: "var(--ink-muted)", textDecoration: "line-through" }}>
+                        {tier.was}
+                      </span>
+                    </div>
+                  </div>
+
+                  <hr className="dashed-rule" style={{ margin: "14px 0" }} />
+                  <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 12, color: "var(--ink-soft)" }}>{tier.who}</div>
+                  <hr className="dashed-rule" style={{ margin: "14px 0" }} />
+
+                  <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                    {tier.items.map((item) => (
+                      <li key={item} style={monoItem}>
+                        <Check size={14} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div style={{ marginTop: 20 }}>
+                    {/* TODO: wire to Stripe Checkout / booking */}
+                    <CtaButton href="#pricing" variant="ink" size="card">
+                      {tier.cta}
+                    </CtaButton>
+                  </div>
+                  {i > 0 ? (
+                    <Link href="#pricing" className="enroll-link">
+                      or skip the call and enroll now
+                    </Link>
+                  ) : null}
+                </Reveal>
+              ))}
+
+              {/* On-demand hour */}
+              <Reveal
+                delay={260}
+                style={{
+                  background: "var(--navy-deep)",
+                  border: "2px solid var(--ink)",
+                  borderRadius: 3,
+                  boxShadow: "6px 6px 0 var(--navy-ink)",
+                  padding: "16px 22px",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 14,
+                }}
+              >
+                <div style={{ fontSize: 14.5, color: "var(--cream-soft)" }}>
+                  <b style={{ color: "var(--cream)", fontFamily: "var(--font-serif-display)", fontSize: 16 }}>Just need an hour?</b>{" "}
+                  Book an on-demand session for{" "}
+                  <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$195/hr</b>.
+                </div>
+                <CtaButton href="#pricing" variant="cream" size="session">
+                  Book a Session
+                </CtaButton>
+              </Reveal>
             </div>
-            <CtaButton href="#pricing" variant="outline" size="session">
-              Book a Session
-            </CtaButton>
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ============================== FAQ ============================== */}
-      <section id="faq" className="bg-haze py-16 lg:py-[88px]">
+      <section id="faq" className="py-16 lg:py-[88px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 840 }}>
           <Reveal style={{ textAlign: "center" }}>
             <div style={eyebrow}>FAQ</div>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 800,
-                fontSize: "clamp(30px,3.6vw,42px)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.02em",
-                color: "var(--navy)",
-                margin: "12px 0 0",
-              }}
-            >
+            <h2 style={{ ...serifH, fontSize: "clamp(30px,3.6vw,44px)", lineHeight: 1.06, margin: "14px 0 0" }}>
               Common questions
             </h2>
           </Reveal>

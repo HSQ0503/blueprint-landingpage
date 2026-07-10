@@ -21,10 +21,15 @@ export function SiteNav() {
 
   const linkStyle = (item: NavItem) => {
     const active = item.activePath != null && pathname === item.activePath;
-    return {
-      color: active ? "var(--navy)" : "var(--ink)",
-      fontWeight: active ? 700 : 600,
-    };
+    return active
+      ? {
+          color: "var(--accent)",
+          fontWeight: 600,
+          textDecoration: "underline",
+          textUnderlineOffset: 6,
+          textDecorationThickness: 2,
+        }
+      : undefined;
   };
 
   return (
@@ -33,10 +38,8 @@ export function SiteNav() {
         position: "sticky",
         top: 0,
         zIndex: 60,
-        background: "rgba(255,255,255,.86)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        borderBottom: "1px solid var(--line-200)",
+        background: "var(--paper)",
+        borderBottom: "2px solid var(--ink)",
       }}
     >
       <div
@@ -44,11 +47,11 @@ export function SiteNav() {
         style={{ maxWidth: 1160, padding: "0 24px", height: 64 }}
       >
         <Link href="/" aria-label="1500 SAT Blueprint — home" style={{ display: "inline-flex", alignItems: "center" }}>
-          <Logo variant="full" size={30} />
+          <Logo size={30} />
         </Link>
 
         {/* Desktop links */}
-        <nav className="hidden items-center gap-[26px] md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {NAV.map((item) => (
             <Link key={item.label} href={item.href} className="link-nav" style={linkStyle(item)}>
               {item.label}
@@ -57,7 +60,7 @@ export function SiteNav() {
         </nav>
 
         <div className="hidden md:block">
-          <CtaButton href="/tutoring#pricing" variant="cta-sm" size="nav">
+          <CtaButton href="/tutoring#pricing" variant="ink" size="nav">
             Book a free call
           </CtaButton>
         </div>
@@ -74,10 +77,10 @@ export function SiteNav() {
             height: 42,
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 11,
-            border: "1px solid var(--line-200)",
-            background: "#fff",
-            color: "var(--navy)",
+            borderRadius: 2,
+            border: "2px solid var(--ink)",
+            background: "var(--card)",
+            color: "var(--ink)",
             cursor: "pointer",
           }}
         >
@@ -92,8 +95,8 @@ export function SiteNav() {
         <nav
           className="md:hidden"
           style={{
-            background: "rgba(255,255,255,.98)",
-            borderBottom: "1px solid var(--line-200)",
+            background: "var(--paper)",
+            borderBottom: "2px solid var(--ink)",
             padding: "8px 24px 20px",
             display: "flex",
             flexDirection: "column",
@@ -106,18 +109,13 @@ export function SiteNav() {
               href={item.href}
               onClick={() => setOpen(false)}
               className="link-nav"
-              style={{ ...linkStyle(item), padding: "12px 0", fontSize: 16 }}
+              style={{ ...linkStyle(item), padding: "12px 0", fontSize: 14 }}
             >
               {item.label}
             </Link>
           ))}
-          <div style={{ marginTop: 8 }}>
-            <CtaButton
-              href="/tutoring#pricing"
-              variant="cta"
-              size="card"
-              onClick={() => setOpen(false)}
-            >
+          <div style={{ marginTop: 10 }}>
+            <CtaButton href="/tutoring#pricing" variant="ink" size="card" onClick={() => setOpen(false)}>
               Book a free call
             </CtaButton>
           </div>

@@ -1,12 +1,16 @@
-// Circled check used in the Blueprint benefit list and the pricing tiers.
-export function Check({ size = 20 }: { size?: number }) {
+// Plain print checkmark for feature lists.
+export function Check({ size = 15, color = "var(--ink)" }: { size?: number; color?: string }) {
   return (
-    <span style={{ flex: "none", color: "var(--cta)", marginTop: 1 }}>
+    <span style={{ flex: "none", color, marginTop: 3 }}>
       <svg viewBox="0 0 24 24" width={size} height={size} style={{ display: "block" }} aria-hidden="true">
-        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="9" strokeWidth="1.7" />
-          <path d="m8 12.5 2.5 2.5L16 9.5" strokeWidth="1.8" />
-        </g>
+        <path
+          d="M4.5 12.5l5 5L19.5 7"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </span>
   );

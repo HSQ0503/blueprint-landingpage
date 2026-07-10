@@ -1,30 +1,16 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
-type Variant = "cta" | "cta-sm" | "ghost" | "outline";
+type Variant = "ink" | "cream" | "ghost" | "outline";
 type Size = "lg" | "md" | "about" | "card" | "nav" | "session";
 
 const SIZES: Record<Size, CSSProperties> = {
-  lg: { minHeight: 54, padding: "0 28px", borderRadius: 16, fontSize: 16 },
-  md: { minHeight: 52, padding: "0 26px", borderRadius: 16, fontSize: 15 },
-  about: { minHeight: 50, padding: "0 26px", borderRadius: 14, fontSize: 15 },
-  card: {
-    minHeight: 48,
-    padding: "0 22px",
-    borderRadius: 14,
-    fontSize: 15,
-    justifyContent: "center",
-    width: "100%",
-  },
-  nav: { minHeight: 38, padding: "9px 16px", borderRadius: 11, fontSize: 13.5, gap: 7 },
-  session: { minHeight: 44, padding: "0 22px", borderRadius: 14, fontSize: 14, gap: 8 },
-};
-
-const VARIANT_CLASS: Record<Variant, string> = {
-  cta: "btn-cta",
-  "cta-sm": "btn-cta-sm",
-  ghost: "btn-ghost",
-  outline: "btn-outline",
+  lg: { minHeight: 54, padding: "0 26px" },
+  md: { minHeight: 52, padding: "0 24px" },
+  about: { minHeight: 50, padding: "0 24px" },
+  card: { minHeight: 48, padding: "0 20px", width: "100%" },
+  nav: { minHeight: 40, padding: "0 16px", fontSize: 12 },
+  session: { minHeight: 44, padding: "0 20px", fontSize: 12.5 },
 };
 
 type CtaButtonProps = {
@@ -33,7 +19,6 @@ type CtaButtonProps = {
   variant?: Variant;
   size?: Size;
   arrow?: boolean;
-  arrowSize?: number;
   style?: CSSProperties;
   className?: string;
   onClick?: () => void;
@@ -42,10 +27,9 @@ type CtaButtonProps = {
 export function CtaButton({
   href,
   children,
-  variant = "cta",
+  variant = "ink",
   size = "md",
   arrow = false,
-  arrowSize = 18,
   style,
   className,
   onClick,
@@ -54,17 +38,17 @@ export function CtaButton({
     <Link
       href={href}
       onClick={onClick}
-      className={`btn ${VARIANT_CLASS[variant]}${className ? ` ${className}` : ""}`}
+      className={`btn btn-${variant}${className ? ` ${className}` : ""}`}
       style={{ ...SIZES[size], ...style }}
     >
       {children}
       {arrow ? (
-        <svg viewBox="0 0 24 24" width={arrowSize} height={arrowSize} style={{ flex: "none" }} aria-hidden="true">
+        <svg viewBox="0 0 24 24" width={15} height={15} style={{ flex: "none" }} aria-hidden="true">
           <path
-            d="M9 6l6 6-6 6"
+            d="M5 12h14M13 6l6 6-6 6"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
