@@ -65,15 +65,15 @@
   --font-mono-ui: var(--font-plex-mono), "Courier New", monospace;
 }
 
-/* Animated ring fill (tutoring score ring). */
-@property --ring {
-  syntax: "<percentage>";
+/* Cyan-blue "moving highlight" that orbits the featured pricing tier. */
+@property --hl-angle {
+  syntax: "<angle>";
   inherits: false;
-  initial-value: 78%;
+  initial-value: 0deg;
 }
-@keyframes ringfill {
-  from {
-    --ring: 0%;
+@keyframes hl-orbit {
+  to {
+    --hl-angle: 360deg;
   }
 }
 @keyframes popIn {
@@ -335,4 +335,40 @@ section[id],
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color 0.15s;
+}
+
+/* Featured pricing tier — a cyan-blue highlight orbits the card border.
+   The ::before is a conic gradient masked to just the 3px ring. */
+.tier-featured {
+  position: relative;
+}
+.tier-featured::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 6px;
+  padding: 3px;
+  background: conic-gradient(
+    from var(--hl-angle, 0deg),
+    var(--accent) 0deg,
+    var(--accent) 40deg,
+    var(--sky) 95deg,
+    var(--brand) 125deg,
+    var(--sky) 155deg,
+    var(--accent) 220deg,
+    var(--accent) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: hl-orbit 3.2s linear infinite;
+}
+/* Solid ring when motion is reduced (the global rule already halts the spin). */
+@media (prefers-reduced-motion: reduce) {
+  .tier-featured::before {
+    background: var(--brand);
+  }
 }

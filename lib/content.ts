@@ -59,29 +59,6 @@ export const BP_FEATURES: Feature[] = [
   },
 ];
 
-export const CO_FEATURES: Feature[] = [
-  {
-    icon: "scan",
-    title: "Personalized sessions",
-    desc: "Based on your diagnostic and goals — we work on what you actually need.",
-  },
-  {
-    icon: "grammar",
-    title: "A custom study plan",
-    desc: "Written down and updated as you improve, so you never guess what to do next.",
-  },
-  {
-    icon: "aimath",
-    title: "Math, Desmos, Reading, Grammar",
-    desc: "Targeted help across every part of the Digital SAT.",
-  },
-  {
-    icon: "layers",
-    title: "Blueprint access included",
-    desc: "Structured practice between sessions with the full 1500 Blueprint.",
-  },
-];
-
 export const PROOF: Proof[] = [
   { from: 680, to: 780 },
   { from: 690, to: 790 },
@@ -170,30 +147,75 @@ export const WINS: Win[] = [
 export const FAQS: Faq[] = [
   {
     q: "Should I do 1-on-1 coaching or start with The 1500 Blueprint?",
-    a: "Start with whatever fits your timeline. The Blueprint is a complete self-paced system — courses, targeted drills, and 5 practice tests you can run on your own. Coaching adds a person: I find your weak spots, build a plan around them, and hold you accountable week to week. Want a big jump fast? Do both — every coaching plan includes Blueprint access.",
+    a: "It depends on your timeline and how far you are from your goal score. If you have a few months and need structure, The 1500 Blueprint is a strong place to start because it gives you the full system to follow at your own pace. If your test is coming up soon, your score is stuck, or you need a major jump, 1-on-1 coaching is better because we can diagnose your exact weaknesses and build a faster plan around them. Most students who are 100+ points away from their goal get the best results with coaching plus the Blueprint.",
   },
   {
     q: "What happens during a typical coaching session?",
-    a: "We work live on your weak spots — usually reviewing your latest practice test, drilling the patterns you keep missing, and teaching the Desmos and reading strategies that actually move your score. You leave every session knowing exactly what to practice next.",
+    a: "Each session is focused on your biggest score gaps. We'll review missed questions, fix the patterns causing mistakes, and build strategies you can actually repeat on test day. Depending on what you need, we may work on Desmos, advanced math, grammar, reading strategy, timing, or full test review.",
   },
   {
     q: "What do I get between sessions?",
-    a: "A clear assignment plus access to The 1500 Blueprint — drills, strategy videos, and practice sets matched to what we worked on. No guessing what to study; the plan is written down and updated as you improve.",
+    a: "You'll get targeted assignments based on what we covered, usually from The 1500 Blueprint, official-style practice, or custom drills. The goal is specific work that attacks the exact skills holding your score back.",
   },
   {
     q: "Do you give homework or a study plan?",
-    a: "Yes. Every student gets a custom study plan built from their diagnostic and goal score, revised each session as your weak spots change. Homework is targeted, never busywork — the minimum that moves your score.",
+    a: "Yes. You'll get a clear plan for what to study between sessions, what to review, and what to avoid wasting time on. A big part of my program is making sure you're not just “studying more” — you're studying the right things.",
   },
   {
-    q: "How is your coaching different from big test-prep companies?",
-    a: "You work directly with me — a four-time perfect-800 Math scorer — not a rotating cast of part-time tutors reading a script. Everything is built for the new Digital SAT, personalized to your weaknesses, and focused on strategy over brute-force problem sets.",
+    q: "How is your coaching different from big test prep companies?",
+    a: "Most test prep companies give students generic lessons, outdated strategies, and tutors who didn't actually master the test at a high level. I scored a 1580 with an 800 Math, and my coaching is built specifically for the Digital SAT: Desmos shortcuts, reading systems, grammar patterns, and a step-by-step plan based on your mistakes.",
   },
   {
-    q: "Do you offer a score-improvement guarantee?",
-    a: "Yes, on The Guarantee plan. If your score doesn't improve by at least 100 points, or reach 1450+, by the end of the program, you get your money back. Full details come with the plan.",
+    q: "Do you offer a score improvement guarantee?",
+    a: "Yes — “The Guarantee” package. As long as you exhaust all sessions and fulfill the few conditions, you are guaranteed to improve by at least 100 points.",
   },
   {
     q: "How does scheduling and rescheduling work?",
-    a: "You book sessions around your schedule. Life happens — reschedule with reasonable notice and we'll find a new time, no penalty. Higher tiers get priority scheduling around your test date.",
+    a: "After you sign up, we'll coordinate a weekly session time that works for your schedule. If you need to reschedule, just give notice ahead of time and we'll find another slot when possible. Because 1-on-1 spots are limited, consistent scheduling is the best way to make real progress.",
   },
+];
+
+export type Saying = {
+  kind: "quote" | "shot";
+  name?: string;
+  handle?: string;
+  text?: string;
+  label?: string;
+  score?: string;
+  detail?: string;
+};
+
+// "Here's what students are saying" wall. `quote` = a message from a student;
+// `shot` = a placeholder for a real score-report screenshot (swap in the image).
+export const SAYINGS: Saying[] = [
+  {
+    kind: "quote",
+    name: "Aryan",
+    handle: "@student",
+    text: "Hey Scott! On my first practice test in April I got a 570 in math — on the one I took this June I got a 780. You genuinely helped me, and you should feel really good about the work you do 🙏",
+  },
+  { kind: "shot", label: "Score report", score: "1560", detail: "770 R/W · 790 Math" },
+  {
+    kind: "quote",
+    name: "Minh",
+    handle: "@student",
+    text: "I could cry 😭 Thank you so much — my score came out way better than I expected 😭😭",
+  },
+  { kind: "shot", label: "Bluebook · latest test", score: "1510", detail: "720 R/W · 790 Math" },
+  {
+    kind: "quote",
+    name: "Raf",
+    handle: "11th grade",
+    text: "Two-month progress and I'm on track for a 1400 this August. Couldn't have done it without you 🔥",
+  },
+  { kind: "shot", label: "Score report", score: "1500", detail: "720 R/W · 780 Math" },
+  {
+    kind: "quote",
+    name: "Fabi",
+    handle: "@student",
+    text: "Scott, I'll be taking the SAT in June — thank you for everything. You were an amazing help 🙏",
+  },
+  { kind: "shot", label: "Score report", score: "1210", detail: "+180 since last test" },
+  { kind: "quote", name: "Devin", handle: "@student", text: "GRATEFUL FOR YOU BRO 🙌 LFG" },
+  { kind: "shot", label: "Score report", score: "1420", detail: "710 R/W · 710 Math" },
 ];

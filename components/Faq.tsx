@@ -60,23 +60,25 @@ export function Faq() {
             </button>
             <div
               style={{
-                overflow: "hidden",
-                transition: "max-height .35s ease, opacity .25s ease",
-                maxHeight: isOpen ? 400 : 0,
+                display: "grid",
+                gridTemplateRows: isOpen ? "1fr" : "0fr",
                 opacity: isOpen ? 1 : 0,
+                transition: "grid-template-rows .35s ease, opacity .25s ease",
               }}
             >
-              <p
-                style={{
-                  margin: "2px 0 18px",
-                  fontSize: 14.5,
-                  lineHeight: 1.65,
-                  color: "var(--ink-soft)",
-                  maxWidth: "64ch",
-                }}
-              >
-                {item.a}
-              </p>
+              <div style={{ overflow: "hidden", minHeight: 0 }}>
+                <p
+                  style={{
+                    margin: "2px 0 18px",
+                    fontSize: 14.5,
+                    lineHeight: 1.65,
+                    color: "var(--ink-soft)",
+                    maxWidth: "64ch",
+                  }}
+                >
+                  {item.a}
+                </p>
+              </div>
             </div>
           </div>
         );
