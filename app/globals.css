@@ -3,13 +3,13 @@
 /*
   1500 SAT Blueprint — print-editorial system, brand palette.
   Navy bands + cream paper + navy ink. Hard 2px ink borders, flat offset
-  shadows (no blur), 2-3px corners, serif headlines (Fraunces), mono meta
+  shadows (no blur), 2-3px corners, bold sans headlines (Gabarito), mono meta
   (IBM Plex Mono), cobalt accent, sky labels on navy, gold for rewards.
 */
 
 @theme inline {
   --font-sans: var(--font-dm-sans);
-  --font-serif: var(--font-fraunces);
+  --font-display: var(--font-gabarito);
   --font-mono: var(--font-plex-mono);
 
   --color-paper: #f7f1e3;
@@ -61,7 +61,7 @@
   --shadow-band: 6px 6px 0 var(--navy-ink);
 
   /* Fonts (bound to next/font vars on <html>) */
-  --font-serif-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-gabarito), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono-ui: var(--font-plex-mono), "Courier New", monospace;
 }
 
@@ -196,16 +196,22 @@ section[id],
   box-shadow: 1px 1px 0 var(--navy-ink);
 }
 
-/* Ghost on navy. */
+/* Ghost on navy. Carries the same offset shadow + press as .btn-cream so a
+   cream + ghost pair shares one ledge and their bottom edges line up. */
 .btn-ghost {
   background: transparent;
   color: var(--cream);
   border-color: var(--cream-faint);
+  box-shadow: 4px 4px 0 var(--navy-ink);
 }
 .btn-ghost:hover {
   background: rgba(247, 241, 227, 0.1);
   color: var(--cream);
   border-color: var(--cream);
+}
+.btn-ghost:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--navy-ink);
 }
 
 /* Outline on cream. */
@@ -293,8 +299,8 @@ section[id],
   padding: 7px 14px;
   border-radius: 2px;
   box-shadow: 3px 3px 0 rgba(26, 35, 62, 0.85);
-  font-family: var(--font-serif-display);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 15px;
   color: var(--ink);
   transform: rotate(-2deg);

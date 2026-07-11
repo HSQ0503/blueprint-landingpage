@@ -29,7 +29,7 @@ export function TestimonialCarousel() {
                 <div>
                   <div
                     style={{
-                      fontFamily: "var(--font-serif-display)",
+                      fontFamily: "var(--font-display)",
                       fontWeight: 700,
                       fontSize: 18,
                       color: "var(--ink)",
@@ -80,7 +80,7 @@ export function TestimonialCarousel() {
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-serif-display)",
+                  fontFamily: "var(--font-dm-sans)",
                   fontStyle: "italic",
                   fontSize: 15.5,
                   lineHeight: 1.6,

@@ -24,9 +24,9 @@ const eyebrow = {
 };
 
 const serifH = {
-  fontFamily: "var(--font-serif-display)",
-  fontWeight: 600,
-  letterSpacing: "-0.015em",
+  fontFamily: "var(--font-display)",
+  fontWeight: 800,
+  letterSpacing: "-0.02em",
   color: "var(--ink)",
 };
 
@@ -44,7 +44,7 @@ export default function BlueprintPage() {
           <Reveal>
             <div style={eyebrow}>For students who want a clear system</div>
             <h1 style={{ ...serifH, fontSize: "clamp(36px,4.8vw,56px)", lineHeight: 1.03, margin: "14px 0 0" }}>
-              The 1500 <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Blueprint.</em>
+              The 1500 <em style={{ fontStyle: "normal", color: "var(--accent)" }}>Blueprint.</em>
             </h1>
             <p style={{ fontSize: 17, lineHeight: 1.62, color: "var(--ink-soft)", maxWidth: "33em", margin: "18px 0 0" }}>
               A complete SAT prep system built for the new Digital SAT — with step-by-step lessons,
@@ -57,7 +57,7 @@ export default function BlueprintPage() {
                 { node: <CountUp value={25} />, label: "skill patterns" },
               ].map((stat, i) => (
                 <div key={i}>
-                  <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 28, color: "var(--ink)", lineHeight: 1 }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 28, color: "var(--ink)", lineHeight: 1 }}>
                     {stat.node}
                   </div>
                   <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)", marginTop: 6 }}>
@@ -142,7 +142,7 @@ export default function BlueprintPage() {
                   <Icon name={f.icon} size={22} />
                 </span>
                 <div>
-                  <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)", lineHeight: 1.25 }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)", lineHeight: 1.25 }}>
                     {f.title}
                   </div>
                   <div style={{ fontSize: 13.5, color: "var(--ink-muted)", lineHeight: 1.55, marginTop: 5 }}>{f.desc}</div>
@@ -211,7 +211,7 @@ export default function BlueprintPage() {
                   <Icon name="spark" size={20} />
                 </span>
                 <div>
-                  <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 17, color: "var(--cream)" }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 17, color: "var(--cream)" }}>
                     Level 4 · Rising
                   </div>
                   <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.05em", color: "var(--cream-soft)", marginTop: 2 }}>
@@ -247,7 +247,7 @@ export default function BlueprintPage() {
                   <span style={{ display: "inline-flex", animation: "flicker 2.4s ease-in-out infinite" }}>
                     <Icon name="flame-gold" size={20} />
                   </span>
-                  <CountUp value={12} style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 22, color: "var(--cream)" }} />
+                  <CountUp value={12} style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 22, color: "var(--cream)" }} />
                   <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--cream-soft)" }}>
                     day streak
                   </span>
@@ -265,7 +265,7 @@ export default function BlueprintPage() {
                 <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--cream-soft)" }}>
                   Patterns mastered
                 </div>
-                <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 24, color: "var(--cream)", marginTop: 4 }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 24, color: "var(--cream)", marginTop: 4 }}>
                   <CountUp value={9} /> / 25
                 </div>
                 <div style={{ marginTop: 10, height: 8, borderRadius: 2, border: "1.5px solid rgba(247,241,227,.4)", background: "rgba(4,12,28,.55)", overflow: "hidden" }}>
@@ -286,7 +286,7 @@ export default function BlueprintPage() {
             position: "absolute",
             right: -30,
             top: -60,
-            fontFamily: "var(--font-serif-display)",
+            fontFamily: "var(--font-display)",
             fontWeight: 900,
             fontSize: 260,
             lineHeight: 1,
@@ -299,13 +299,13 @@ export default function BlueprintPage() {
         <div className="relative mx-auto px-6 text-center" style={{ maxWidth: 760 }}>
           <Reveal>
             <h2 style={{ ...serifH, color: "var(--cream)", fontSize: "clamp(28px,3.4vw,40px)", lineHeight: 1.08, margin: 0 }}>
-              Ready to start the <em style={{ fontStyle: "italic", color: "var(--gold)" }}>climb?</em>
+              Ready to start the <em style={{ fontStyle: "normal", color: "var(--gold)" }}>climb?</em>
             </h2>
             <p style={{ fontSize: 16, color: "var(--cream-soft)", margin: "14px auto 0", maxWidth: "34em" }}>
               Get the full Blueprint on its own, or bundle it with 1-on-1 coaching for a plan built
               around you.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center", marginTop: 28 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, justifyContent: "center", marginTop: 28 }}>
               <CtaButton href="/tutoring#pricing" variant="cream" size="md" arrow>
                 See plans &amp; pricing
               </CtaButton>

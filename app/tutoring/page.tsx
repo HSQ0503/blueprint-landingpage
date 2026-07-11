@@ -25,9 +25,9 @@ const eyebrow = {
 };
 
 const serifH = {
-  fontFamily: "var(--font-serif-display)",
-  fontWeight: 600,
-  letterSpacing: "-0.015em",
+  fontFamily: "var(--font-display)",
+  fontWeight: 800,
+  letterSpacing: "-0.02em",
   color: "var(--ink)",
 };
 
@@ -116,7 +116,7 @@ export default function TutoringPage() {
             <h1 style={{ ...serifH, fontSize: "clamp(36px,4.8vw,56px)", lineHeight: 1.03, margin: "14px 0 0" }}>
               1-on-1 coaching, built for{" "}
               <span style={{ background: "var(--gold)", padding: "0 10px", boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>
-                <em style={{ fontStyle: "italic" }}>your</em>
+                <em style={{ fontStyle: "normal" }}>your</em>
               </span>{" "}
               exact situation.
             </h1>
@@ -203,7 +203,7 @@ export default function TutoringPage() {
                     <Icon name={f.icon} size={21} />
                   </span>
                   <div>
-                    <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)", lineHeight: 1.25 }}>
+                    <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)", lineHeight: 1.25 }}>
                       {f.title}
                     </div>
                     <div style={{ fontSize: 13, color: "var(--ink-muted)", lineHeight: 1.55, marginTop: 4 }}>{f.desc}</div>
@@ -250,7 +250,7 @@ export default function TutoringPage() {
                   justifyContent: "center",
                 }}
               >
-                <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 30, color: "var(--accent)", lineHeight: 1 }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 30, color: "var(--accent)", lineHeight: 1 }}>
                   +<CountUp value={150} />
                 </div>
                 <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)", marginTop: 4 }}>
@@ -289,8 +289,8 @@ export default function TutoringPage() {
           <Reveal style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
             <div>
               <div style={eyebrow}>Proof it works</div>
-              <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 24, color: "var(--ink)", marginTop: 8 }}>
-                400+ students · avg <em style={{ fontStyle: "italic", color: "var(--accent)" }}>+150 points</em>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 24, color: "var(--ink)", marginTop: 8 }}>
+                400+ students · avg <em style={{ fontStyle: "normal", color: "var(--accent)" }}>+150 points</em>
               </div>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
@@ -424,7 +424,7 @@ export default function TutoringPage() {
                   <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                     <h3 style={{ ...serifH, fontSize: 27, margin: 0 }}>{tier.name}</h3>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-                      <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 34, color: "var(--ink)", lineHeight: 1 }}>
+                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 34, color: "var(--ink)", lineHeight: 1 }}>
                         {tier.price}
                       </span>
                       <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 13, color: "var(--ink-muted)", textDecoration: "line-through" }}>
@@ -477,7 +477,7 @@ export default function TutoringPage() {
                 }}
               >
                 <div style={{ fontSize: 14.5, color: "var(--cream-soft)" }}>
-                  <b style={{ color: "var(--cream)", fontFamily: "var(--font-serif-display)", fontSize: 16 }}>Just need an hour?</b>{" "}
+                  <b style={{ color: "var(--cream)", fontFamily: "var(--font-display)", fontSize: 16 }}>Just need an hour?</b>{" "}
                   Book an on-demand session for{" "}
                   <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$195/hr</b>.
                 </div>
