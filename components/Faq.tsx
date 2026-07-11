@@ -37,7 +37,7 @@ export function Faq() {
                 padding: "16px 0",
                 cursor: "pointer",
                 textAlign: "left",
-                fontFamily: "var(--font-serif-display)",
+                fontFamily: "var(--font-display)",
                 fontSize: 17,
                 fontWeight: 600,
                 color: "var(--ink)",

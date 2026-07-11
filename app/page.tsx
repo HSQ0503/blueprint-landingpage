@@ -18,9 +18,9 @@ const eyebrow = {
 };
 
 const serifH = {
-  fontFamily: "var(--font-serif-display)",
-  fontWeight: 600,
-  letterSpacing: "-0.015em",
+  fontFamily: "var(--font-display)",
+  fontWeight: 800,
+  letterSpacing: "-0.02em",
   color: "var(--ink)",
 };
 
@@ -65,7 +65,7 @@ export default function HomePage() {
             position: "absolute",
             right: -40,
             top: -60,
-            fontFamily: "var(--font-serif-display)",
+            fontFamily: "var(--font-display)",
             fontWeight: 900,
             fontSize: 380,
             lineHeight: 1,
@@ -99,7 +99,19 @@ export default function HomePage() {
               The SAT changed.
               <br />
               Your prep should{" "}
-              <em style={{ fontStyle: "italic", color: "var(--gold)" }}>too.</em>
+              <em
+                style={{
+                  fontStyle: "normal",
+                  background: "var(--gold)",
+                  color: "var(--ink)",
+                  padding: "0 10px",
+                  borderRadius: 3,
+                  boxDecorationBreak: "clone",
+                  WebkitBoxDecorationBreak: "clone",
+                }}
+              >
+                too.
+              </em>
             </h1>
 
             <p style={{ fontSize: 17, lineHeight: 1.65, color: "var(--cream-soft)", maxWidth: "32em", margin: "22px 0 0" }}>
@@ -109,7 +121,7 @@ export default function HomePage() {
               <b style={{ color: "var(--cream)" }}>400+ students</b> toward 1500.
             </p>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, margin: "30px 0 0" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, margin: "30px 0 0" }}>
               <CtaButton href="/tutoring#pricing" variant="cream" size="lg" arrow>
                 Master the Digital SAT
               </CtaButton>
@@ -143,7 +155,7 @@ export default function HomePage() {
                 <div key={i}>
                   <div
                     style={{
-                      fontFamily: "var(--font-serif-display)",
+                      fontFamily: "var(--font-display)",
                       fontWeight: 700,
                       fontSize: 30,
                       color: "var(--cream)",
@@ -195,8 +207,8 @@ export default function HomePage() {
                   padding: "12px 4px 2px",
                 }}
               >
-                <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)" }}>
-                  Scott — <em style={{ color: "var(--accent)" }}>1580 SAT</em>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)" }}>
+                  Scott — <em style={{ fontStyle: "normal", color: "var(--accent)" }}>1580 SAT</em>
                 </span>
                 <span
                   style={{
@@ -283,7 +295,7 @@ export default function HomePage() {
                   >
                     <Icon name="trophy" size={28} />
                   </span>
-                  <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)", marginTop: 12 }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)", marginTop: 12 }}>
                     1500
                   </div>
                   <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--accent)", marginTop: 3 }}>
@@ -372,7 +384,7 @@ export default function HomePage() {
                 >
                   <Icon name={card.icon} size={24} />
                 </span>
-                <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 19, color: "var(--ink)", marginTop: 16 }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 19, color: "var(--ink)", marginTop: 16 }}>
                   {card.title}
                 </div>
                 <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--ink-muted)", margin: "7px 0 0" }}>{card.desc}</p>
@@ -394,6 +406,12 @@ export default function HomePage() {
 
           <Reveal delay={80}>
             <TestimonialCarousel />
+          </Reveal>
+
+          <Reveal delay={140} style={{ display: "flex", justifyContent: "center", marginTop: 40 }}>
+            <CtaButton href="/results" variant="ink" size="md" arrow>
+              See all student results
+            </CtaButton>
           </Reveal>
         </div>
       </section>
@@ -435,7 +453,7 @@ export default function HomePage() {
                 <ImageSlot label="Photo of Scott" />
               </div>
               <div style={{ padding: "12px 4px 2px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)" }}>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)" }}>
                   4× perfect 800 — SAT Math
                 </span>
                 <span style={{ color: "var(--gold-600)", display: "inline-flex" }}>
@@ -513,7 +531,7 @@ function RoadStep({ step, index }: { step: { icon: IconName; title: string; sub:
         <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.1em", color: "var(--accent)", marginTop: 12 }}>
           {String(index + 1).padStart(2, "0")}
         </div>
-        <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)", marginTop: 3 }}>
+        <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)", marginTop: 3 }}>
           {step.title}
         </div>
         <div style={{ fontSize: 11.5, color: "var(--ink-muted)", marginTop: 2 }}>{step.sub}</div>
@@ -576,7 +594,7 @@ function OfferingCard({
           <Icon name={iconName} size={25} />
         </span>
         <div>
-          <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 23, color: "var(--ink)" }}>{title}</div>
+          <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 23, color: "var(--ink)" }}>{title}</div>
           <div
             style={{
               fontFamily: "var(--font-mono-ui)",
@@ -661,7 +679,7 @@ function ScoreTile({ score, invert }: { score: (typeof SCORES)[number]; invert?:
       <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 6, flexWrap: "wrap" }}>
         <CountUp
           value={score.total}
-          style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 48, color: fg, lineHeight: 1 }}
+          style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 48, color: fg, lineHeight: 1 }}
         />
         <div style={{ display: "flex", gap: 14 }}>
           {[
@@ -672,7 +690,7 @@ function ScoreTile({ score, invert }: { score: (typeof SCORES)[number]; invert?:
               <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 8.5, letterSpacing: "0.06em", textTransform: "uppercase", color: meta }}>
                 {s.k}
               </div>
-              <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 16, color: fg, marginTop: 1 }}>{s.v}</div>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, color: fg, marginTop: 1 }}>{s.v}</div>
             </div>
           ))}
         </div>
@@ -719,13 +737,13 @@ function ResultsMosaic() {
           }}
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
-            <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 30, color: "var(--ink)", lineHeight: 1 }}>+</span>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 30, color: "var(--ink)", lineHeight: 1 }}>+</span>
             <CountUp
               value={150}
-              style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 68, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1 }}
+              style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 68, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1 }}
             />
           </div>
-          <div style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 18, color: "var(--ink)", marginTop: 8 }}>
+          <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: "var(--ink)", marginTop: 8 }}>
             average point gain
           </div>
           <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.05em", textTransform: "uppercase", color: "rgba(26,35,62,.66)", marginTop: 4 }}>
@@ -757,10 +775,10 @@ function ResultsMosaic() {
             Scott&apos;s own SAT
           </div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginTop: 6, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: "var(--font-serif-display)", fontWeight: 700, fontSize: 58, color: "var(--accent)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 58, color: "var(--accent)", letterSpacing: "-0.02em", lineHeight: 1 }}>
               1580
             </span>
-            <span style={{ fontFamily: "var(--font-serif-display)", fontStyle: "italic", fontWeight: 600, fontSize: 17, color: "var(--ink)" }}>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)" }}>
               & four perfect 800s in Math
             </span>
           </div>

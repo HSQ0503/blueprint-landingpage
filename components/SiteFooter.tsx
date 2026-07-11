@@ -31,6 +31,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Resources",
     links: [
       { label: "Reviews", href: "/#testimonials" },
+      { label: "Wall of Wins", href: "/results" },
       { label: "FAQ", href: "/tutoring#faq" },
     ],
   },

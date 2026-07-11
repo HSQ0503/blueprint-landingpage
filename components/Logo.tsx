@@ -48,7 +48,7 @@ export function Logo({ variant = "full", tone = "ink", size = 30, className, sty
       {mark}
       <span
         style={{
-          fontFamily: "var(--font-serif-display)",
+          fontFamily: "var(--font-display)",
           fontWeight: 700,
           lineHeight: 1,
           letterSpacing: "-0.01em",

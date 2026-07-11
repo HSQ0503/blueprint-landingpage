@@ -17,6 +17,14 @@ export type ScoreCard = {
 };
 export type Faq = { q: string; a: string };
 export type Proof = { from: number; to: number };
+export type Win = {
+  name: string;
+  from: number;
+  to: number;
+  cohort: string;
+  metric: string;
+  quote?: string;
+};
 
 export const BP_FEATURES: Feature[] = [
   {
@@ -112,6 +120,51 @@ export const SCORES: ScoreCard[] = [
   { total: 1560, rw: 770, math: 790, date: "SAT · March 14, 2026", delta: "+140 pts" },
   { total: 1510, rw: 720, math: 790, date: "SAT · May 2, 2026", delta: "+140 pts" },
   { total: 1420, rw: 710, math: 710, date: "SAT · March 14, 2026", delta: "" },
+];
+
+// Gallery of student score reports — the "Wall of Wins" page. Screenshots are
+// swapped in per student; captions come from here.
+export const WINS: Win[] = [
+  {
+    name: "Sebastian",
+    from: 680,
+    to: 780,
+    cohort: "March 2026",
+    metric: "SAT Math",
+    quote: "I never knew you could raise your score so much, so fast.",
+  },
+  {
+    name: "Octavia",
+    from: 690,
+    to: 790,
+    cohort: "August 2025",
+    metric: "SAT Math",
+    quote: "Exactly what I needed to take my math from a 690 to a 790.",
+  },
+  { name: "Maya", from: 1290, to: 1480, cohort: "May 2026", metric: "SAT Total" },
+  { name: "Priya", from: 700, to: 800, cohort: "December 2025", metric: "SAT Math" },
+  {
+    name: "Marcus",
+    from: 1180,
+    to: 1400,
+    cohort: "August 2025",
+    metric: "SAT Total",
+    quote: "Two hundred points I didn't think were possible.",
+  },
+  { name: "Elena", from: 660, to: 770, cohort: "May 2026", metric: "SAT Math" },
+  { name: "Bennett", from: 620, to: 750, cohort: "August 2025", metric: "SAT Math" },
+  { name: "Jordan", from: 1420, to: 1560, cohort: "March 2026", metric: "SAT Total" },
+  {
+    name: "Tyler",
+    from: 1250,
+    to: 1450,
+    cohort: "May 2026",
+    metric: "SAT Total",
+    quote: "The plan was clear every single week.",
+  },
+  { name: "Aisha", from: 690, to: 780, cohort: "October 2025", metric: "SAT Math" },
+  { name: "Sofia", from: 710, to: 790, cohort: "December 2025", metric: "SAT Math" },
+  { name: "Devin", from: 1340, to: 1510, cohort: "March 2026", metric: "SAT Total" },
 ];
 
 export const FAQS: Faq[] = [
