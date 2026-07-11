@@ -219,3 +219,95 @@ export const SAYINGS: Saying[] = [
   { kind: "quote", name: "Devin", handle: "@student", text: "GRATEFUL FOR YOU BRO 🙌 LFG" },
   { kind: "shot", label: "Score report", score: "1420", detail: "710 R/W · 710 Math" },
 ];
+
+export type Plan = {
+  id: string;
+  name: string;
+  who: string;
+  price: string;
+  was?: string;
+  items: string[];
+  cta: string;
+  primary: "enroll" | "call"; // what the main button does
+  popular?: boolean;
+  guarantee?: boolean;
+  stripeUrl?: string; // Scott's Stripe Payment Link; empty => placeholder checkout
+};
+
+// Single source of truth for coaching plans — rendered on /tutoring, /enroll,
+// and /book-a-call. To go live, fill in each stripeUrl below and CALENDLY_URL.
+export const PLANS: Plan[] = [
+  {
+    id: "essentials",
+    name: "The Essentials",
+    who: "Best for getting started",
+    price: "$595",
+    was: "$700",
+    items: [
+      "2 hours of 1-on-1 sessions",
+      "A clear study plan for your exact situation",
+      "3 months of The 1500 Blueprint ($210 value)",
+      "Access to my SAT predictions ($100 value)",
+    ],
+    cta: "Get Started",
+    primary: "enroll",
+    stripeUrl: "",
+  },
+  {
+    id: "accelerator",
+    name: "The Accelerator",
+    who: "Best for fast progress",
+    price: "$1,395",
+    was: "$1,690",
+    items: [
+      "6 hours of 1-on-1 sessions",
+      "A custom step-by-step roadmap with weekly assignments",
+      "6 months of The 1500 Blueprint ($420 value)",
+      "Access to my SAT predictions ($100 value)",
+      "Add hours anytime at $185/hr",
+    ],
+    cta: "Book a free call",
+    primary: "call",
+    popular: true,
+    stripeUrl: "",
+  },
+  {
+    id: "guarantee",
+    name: "The Guarantee",
+    who: "Best for a serious score jump",
+    price: "$2,495",
+    was: "$3,280",
+    items: [
+      "12 hours of 1-on-1 sessions (priority scheduling)",
+      "Everything in The Accelerator",
+      "12 months of The 1500 Blueprint ($840 value)",
+      "Add hours anytime at $175/hr",
+    ],
+    cta: "Book a free call",
+    primary: "call",
+    guarantee: true,
+    stripeUrl: "",
+  },
+  {
+    id: "hour",
+    name: "On-demand hour",
+    who: "Just need a single session",
+    price: "$195",
+    items: [
+      "One 60-minute 1-on-1 session",
+      "Work on exactly what you choose",
+      "No commitment — book as needed",
+    ],
+    cta: "Book a Session",
+    primary: "call",
+    stripeUrl: "",
+  },
+];
+
+// Scott's scheduling link (Calendly). Leave empty to show the placeholder embed.
+export const CALENDLY_URL: string = "";
+
+export function getPlan(id?: string | null): Plan | undefined {
+  if (!id) return undefined;
+  return PLANS.find((p) => p.id === id);
+}

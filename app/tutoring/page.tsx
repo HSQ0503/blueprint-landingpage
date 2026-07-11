@@ -6,7 +6,7 @@ import { CtaButton } from "@/components/CtaButton";
 import { ImageSlot } from "@/components/ImageSlot";
 import { Check } from "@/components/Check";
 import { Faq } from "@/components/Faq";
-import { PROOF, SAYINGS } from "@/lib/content";
+import { PROOF, SAYINGS, PLANS } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "1-on-1 Coaching — Private Digital SAT tutoring with Scott",
@@ -42,61 +42,8 @@ const monoItem = {
   color: "var(--ink)",
 } as const;
 
-/* Horizontal pricing tiers. Each tier carries its own full feature list
-   (the old shared "what's included" card was folded in per Scott's note). */
-const TIERS: {
-  name: string;
-  who: string;
-  price: string;
-  was: string;
-  items: string[];
-  cta: string;
-  popular?: boolean;
-  guarantee?: boolean;
-}[] = [
-  {
-    name: "The Essentials",
-    who: "Best for getting started",
-    price: "$595",
-    was: "$700",
-    items: [
-      "2 hours of 1-on-1 sessions",
-      "A clear study plan for your exact situation",
-      "3 months of The 1500 Blueprint ($210 value)",
-      "Access to my SAT predictions ($100 value)",
-    ],
-    cta: "Get Started",
-  },
-  {
-    name: "The Accelerator",
-    who: "Best for fast progress",
-    price: "$1,395",
-    was: "$1,690",
-    items: [
-      "6 hours of 1-on-1 sessions",
-      "A custom step-by-step roadmap with weekly assignments",
-      "6 months of The 1500 Blueprint ($420 value)",
-      "Access to my SAT predictions ($100 value)",
-      "Add hours anytime at $185/hr",
-    ],
-    cta: "Book a free call",
-    popular: true,
-  },
-  {
-    name: "The Guarantee",
-    who: "Best for a serious score jump",
-    price: "$2,495",
-    was: "$3,280",
-    items: [
-      "12 hours of 1-on-1 sessions (priority scheduling)",
-      "Everything in The Accelerator",
-      "12 months of The 1500 Blueprint ($840 value)",
-      "Add hours anytime at $175/hr",
-    ],
-    cta: "Book a free call",
-    guarantee: true,
-  },
-];
+// The three enrollable tiers (the on-demand hour renders separately below).
+const TIERS = PLANS.filter((p) => p.id !== "hour");
 
 export default function TutoringPage() {
   return (
@@ -328,18 +275,21 @@ export default function TutoringPage() {
                 ) : null}
 
                 <div style={{ marginTop: "auto", paddingTop: 22 }}>
-                  {/* TODO: wire to Stripe Checkout / booking */}
-                  <CtaButton href="#pricing" variant="ink" size="card">
+                  <CtaButton
+                    href={tier.primary === "call" ? `/book-a-call?plan=${tier.id}` : `/enroll?plan=${tier.id}`}
+                    variant="ink"
+                    size="card"
+                  >
                     {tier.cta}
                   </CtaButton>
-                  {/* Rendered on every tier (hidden on Essentials) so the
-                      three primary CTAs line up on one row. */}
+                  {/* Shown on the "call" tiers (space-reserved but hidden on the
+                      rest) so the three primary CTAs line up on one row. */}
                   <Link
-                    href="#pricing"
+                    href={`/enroll?plan=${tier.id}`}
                     className="enroll-link"
-                    aria-hidden={i === 0 || undefined}
-                    tabIndex={i === 0 ? -1 : undefined}
-                    style={{ visibility: i > 0 ? "visible" : "hidden" }}
+                    aria-hidden={tier.primary !== "call" || undefined}
+                    tabIndex={tier.primary !== "call" ? -1 : undefined}
+                    style={{ visibility: tier.primary === "call" ? "visible" : "hidden" }}
                   >
                     or skip the call and enroll now
                   </Link>
@@ -370,7 +320,7 @@ export default function TutoringPage() {
               Book an on-demand session for{" "}
               <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$195/hr</b>.
             </div>
-            <CtaButton href="#pricing" variant="cream" size="session">
+            <CtaButton href="/book-a-call?plan=hour" variant="cream" size="session">
               Book a Session
             </CtaButton>
           </Reveal>
