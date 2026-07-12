@@ -3,15 +3,16 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { Icon } from "@/components/Icon";
 import { CtaButton } from "@/components/CtaButton";
-import { ImageSlot } from "@/components/ImageSlot";
 import { Check } from "@/components/Check";
 import { Faq } from "@/components/Faq";
-import { PROOF, SAYINGS, PLANS } from "@/lib/content";
+import { TestimonialWall } from "@/components/TestimonialWall";
+import { HeroVideo } from "@/components/HeroVideo";
+import { PROOF, PLANS } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "1-on-1 Coaching — Private Digital SAT tutoring with Scott",
+  title: "1-on-1 Coaching: Private Digital SAT tutoring with Scott",
   description:
-    "Work directly with Scott to master the Digital SAT: custom strategy, weekly reviews, and a plan built around your exact weaknesses. Plans from $595. 100+ point guarantee available.",
+    "Work directly with Scott to master the Digital SAT: custom strategy, weekly reviews, and a plan built around your exact weaknesses. Plans from $595, 100+ point guarantee available.",
 };
 
 const eyebrow = {
@@ -85,12 +86,16 @@ export default function TutoringPage() {
                 transform: "rotate(-0.8deg)",
               }}
             >
-              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}>
-                <ImageSlot label="Live session — Desmos strategy" />
+              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10", overflow: "hidden", borderRadius: 2, background: "var(--navy-deep)" }}>
+                <HeroVideo
+                  src="/videos/tutoring-hero.mp4"
+                  poster="/videos/tutoring-poster.jpg"
+                  label="Scott coaching a live 1-on-1 session"
+                />
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 4px 2px" }}>
                 <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
-                  Weekly reviews — accountability that sticks
+                  Weekly reviews · accountability that sticks
                 </span>
                 <span style={{ display: "inline-flex", color: "var(--ink)" }}>
                   <Icon name="history" size={16} />
@@ -114,10 +119,8 @@ export default function TutoringPage() {
             </p>
           </Reveal>
 
-          <div className="mt-9 columns-1 sm:columns-2 lg:columns-3" style={{ columnGap: 18 }}>
-            {SAYINGS.map((item, i) => (
-              <SayingCard key={i} item={item} index={i} />
-            ))}
+          <div className="mt-9">
+            <TestimonialWall />
           </div>
         </div>
       </section>
@@ -340,87 +343,5 @@ export default function TutoringPage() {
         </div>
       </section>
     </main>
-  );
-}
-
-/* ----------------------------- helpers ----------------------------- */
-
-// Scrapbook-tilt for the "students are saying" wall cards.
-const CARD_ROT = [-1.1, 0.8, -0.6, 1.1, 0.5, -0.9, 1.2, -0.4, 0.9, -1.2];
-
-function SayingCard({ item, index }: { item: (typeof SAYINGS)[number]; index: number }) {
-  const rot = CARD_ROT[index % CARD_ROT.length];
-  const frame = {
-    breakInside: "avoid" as const,
-    display: "inline-block",
-    width: "100%",
-    marginBottom: 18,
-    background: "var(--card)",
-    border: "2px solid var(--ink)",
-    borderRadius: 3,
-    boxShadow: "4px 4px 0 var(--ink)",
-    transform: `rotate(${rot}deg)`,
-  };
-
-  if (item.kind === "shot") {
-    return (
-      <div style={{ ...frame, padding: 10 }}>
-        <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5" }}>
-          <ImageSlot label={`${item.label} — ${item.score}`} />
-        </div>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 10, padding: "12px 4px 2px" }}>
-          <div>
-            <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 9.5, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
-              {item.label}
-            </div>
-            <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 30, color: "var(--ink)", lineHeight: 1, marginTop: 4 }}>
-              {item.score}
-            </div>
-          </div>
-          {item.detail ? (
-            <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, color: "var(--ink-muted)", textAlign: "right", maxWidth: "10em", lineHeight: 1.4 }}>
-              {item.detail}
-            </div>
-          ) : null}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ ...frame, padding: "18px 20px 20px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-        <span
-          style={{
-            width: 38,
-            height: 38,
-            borderRadius: "50%",
-            background: "var(--tag)",
-            border: "2px solid var(--ink)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "var(--font-display)",
-            fontWeight: 800,
-            fontSize: 15,
-            color: "var(--ink)",
-            flex: "none",
-          }}
-        >
-          {item.name?.charAt(0)}
-        </span>
-        <div>
-          <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, color: "var(--ink)", lineHeight: 1.1 }}>
-            {item.name}
-          </div>
-          <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.04em", color: "var(--ink-muted)", marginTop: 2 }}>
-            {item.handle}
-          </div>
-        </div>
-      </div>
-      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: 14, lineHeight: 1.6, color: "var(--ink-soft)", margin: "13px 0 0" }}>
-        {item.text}
-      </p>
-    </div>
   );
 }

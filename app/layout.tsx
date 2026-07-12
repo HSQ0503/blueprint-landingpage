@@ -28,7 +28,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "1500 SAT Blueprint — Master the Digital SAT",
+  title: "Scott's SAT: Master the Digital SAT",
   description:
     "New Digital SAT prep from a 1580-scorer with four perfect 800 Math scores. Desmos strategies, reading systems, grammar shortcuts, and a plan built around your weaknesses.",
 };

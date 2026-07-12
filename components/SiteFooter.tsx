@@ -30,8 +30,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Resources",
     links: [
-      { label: "Reviews", href: "/#testimonials" },
-      { label: "Wall of Wins", href: "/results" },
+      { label: "Reviews", href: "/results" },
       { label: "FAQ", href: "/tutoring#faq" },
     ],
   },
@@ -74,7 +73,7 @@ export function SiteFooter() {
           <div>
             <div style={colHead}>Have a question?</div>
             <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--cream-soft)", margin: "14px 0 0" }}>
-              Send me an email — I read every one.
+              Send me an email. I read every one.
             </p>
             <a
               href="mailto:scott@scottssatprep.com"

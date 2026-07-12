@@ -23,7 +23,7 @@ export function Logo({ variant = "full", tone = "ink", size = 30, className, sty
       width={size}
       height={size}
       role="img"
-      aria-label="1500 SAT Blueprint"
+      aria-label="Scott's SAT"
       style={{ flex: "none" }}
     >
       <circle cx="20" cy="20" r="17.5" fill="none" stroke={ring} strokeWidth="3.4" />
@@ -57,7 +57,7 @@ export function Logo({ variant = "full", tone = "ink", size = 30, className, sty
           color: word,
         }}
       >
-        1500 <span style={{ color: sat }}>SAT</span> Blueprint
+        Scott&apos;s <span style={{ color: sat }}>SAT</span>
       </span>
     </span>
   );

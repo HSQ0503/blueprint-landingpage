@@ -9,9 +9,10 @@ import { CtaButton } from "@/components/CtaButton";
 type NavItem = { label: string; href: string; activePath?: string };
 
 const NAV: NavItem[] = [
-  { label: "The Blueprint", href: "/blueprint", activePath: "/blueprint" },
+  { label: "Home", href: "/", activePath: "/" },
   { label: "Tutoring", href: "/tutoring", activePath: "/tutoring" },
-  { label: "Reviews", href: "/#testimonials" },
+  { label: "Blueprint", href: "/blueprint", activePath: "/blueprint" },
+  { label: "Reviews", href: "/results", activePath: "/results" },
   { label: "Pricing", href: "/tutoring#pricing" },
 ];
 
@@ -46,7 +47,7 @@ export function SiteNav() {
         className="mx-auto flex items-center justify-between gap-6"
         style={{ maxWidth: 1160, padding: "0 24px", height: 64 }}
       >
-        <Link href="/" aria-label="1500 SAT Blueprint — home" style={{ display: "inline-flex", alignItems: "center" }}>
+        <Link href="/" aria-label="Scott's SAT, home" style={{ display: "inline-flex", alignItems: "center" }}>
           <Logo size={30} />
         </Link>
 

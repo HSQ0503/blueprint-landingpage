@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { CtaButton } from "@/components/CtaButton";
-import { ImageSlot } from "@/components/ImageSlot";
-import { WINS } from "@/lib/content";
+import { TestimonialWall } from "@/components/TestimonialWall";
 
 export const metadata: Metadata = {
-  title: "Wall of Wins — Real student SAT score jumps",
+  title: "Wall of Wins: Real student SAT score jumps",
   description:
-    "Real score reports from students who worked with Scott. Browse the jumps students have earned with The 1500 Blueprint and 1-on-1 coaching.",
+    "Real score reports from students who worked with Scott. Browse the jumps students have earned with The Blueprint and 1-on-1 coaching.",
 };
 
 const serifH = {
@@ -19,9 +18,6 @@ const serifH = {
 };
 
 const ruled = { borderTop: "2px solid var(--ink)" };
-
-// Subtle scrapbook tilt — varied but small, keyed off index.
-const ROTATIONS = [-1.1, 0.8, 1.2, -0.6, 0.5, -1.3];
 
 export default function ResultsPage() {
   return (
@@ -66,7 +62,7 @@ export default function ResultsPage() {
             </h1>
             <p style={{ fontSize: 17, lineHeight: 1.62, color: "var(--cream-soft)", maxWidth: "34em", margin: "20px 0 0" }}>
               Every card is a real score report from a student who put in the work. Screenshots,
-              names, and the jumps they earned — no cherry-picked promises.
+              names, and the jumps they earned. No cherry-picked promises.
             </p>
 
             <div
@@ -108,11 +104,7 @@ export default function ResultsPage() {
       {/* ============================ GALLERY ============================ */}
       <section className="py-14 lg:py-[72px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <div className="columns-1 sm:columns-2 lg:columns-3" style={{ columnGap: 18 }}>
-            {WINS.map((win, i) => (
-              <WinCard key={win.name} win={win} index={i} />
-            ))}
-          </div>
+          <TestimonialWall />
         </div>
       </section>
 
@@ -139,73 +131,5 @@ export default function ResultsPage() {
         </div>
       </section>
     </main>
-  );
-}
-
-/* ----------------------------- helpers ----------------------------- */
-
-function WinCard({ win, index }: { win: (typeof WINS)[number]; index: number }) {
-  const rot = ROTATIONS[index % ROTATIONS.length];
-  return (
-    <div
-      style={{
-        breakInside: "avoid",
-        display: "inline-block",
-        width: "100%",
-        marginBottom: 18,
-        background: "var(--card)",
-        border: "2px solid var(--ink)",
-        borderRadius: 3,
-        boxShadow: "4px 4px 0 var(--ink)",
-        padding: 10,
-        transform: `rotate(${rot}deg)`,
-      }}
-    >
-      {/* The score-report screenshot slot. */}
-      <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 3" }}>
-        <ImageSlot label={`${win.name}'s ${win.metric} score report`} />
-      </div>
-
-      {/* Caption strip: name + meta on the left, the jump on the right. */}
-      <div style={{ padding: "12px 4px 2px" }}>
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 10 }}>
-          <div>
-            <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 17, color: "var(--ink)", lineHeight: 1.1 }}>
-              {win.name}
-            </div>
-            <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--ink-muted)", marginTop: 4 }}>
-              {win.metric} · {win.cohort}
-            </div>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-mono-ui)", fontSize: 13, whiteSpace: "nowrap" }}>
-            <span style={{ color: "var(--ink-muted)" }}>{win.from}</span>
-            <span aria-hidden style={{ color: "var(--accent)", fontWeight: 600 }}>
-              →
-            </span>
-            <span
-              style={{
-                fontWeight: 600,
-                color: "var(--ink)",
-                background: "var(--gold)",
-                border: "1.5px solid var(--ink)",
-                borderRadius: 2,
-                padding: "2px 7px",
-              }}
-            >
-              {win.to}
-            </span>
-          </div>
-        </div>
-
-        {win.quote ? (
-          <>
-            <hr className="dashed-rule" style={{ margin: "12px 0" }} />
-            <p style={{ fontFamily: "var(--font-dm-sans)", fontStyle: "italic", fontSize: 13.5, lineHeight: 1.55, color: "var(--ink-soft)", margin: 0 }}>
-              “{win.quote}”
-            </p>
-          </>
-        ) : null}
-      </div>
-    </div>
   );
 }

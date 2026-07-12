@@ -5,7 +5,7 @@ import { Check } from "@/components/Check";
 import { PLANS, getPlan, type Plan } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Enroll — 1-on-1 SAT coaching with Scott",
+  title: "Enroll: 1-on-1 SAT coaching with Scott",
   description:
     "Enroll in a coaching plan and start improving. Secure checkout, and Blueprint access begins the day you join.",
 };
@@ -55,7 +55,7 @@ export default async function EnrollPage({
             <p style={{ fontSize: 16.5, lineHeight: 1.62, color: "var(--ink-soft)", margin: "16px 0 0", maxWidth: "34em" }}>
               {plan
                 ? "You're one step away. Confirm your plan and check out securely below."
-                : "Pick the plan that matches your goal — you can upgrade or add hours anytime."}
+                : "Pick the plan that matches your goal. You can upgrade or add hours anytime."}
             </p>
           </Reveal>
 
@@ -152,7 +152,7 @@ export default async function EnrollPage({
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7, marginTop: 14, color: "var(--ink-muted)" }}>
                   <LockIcon />
                   <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.04em" }}>
-                    Secure checkout — powered by Stripe
+                    Secure checkout, powered by Stripe
                   </span>
                 </div>
 
@@ -244,7 +244,7 @@ function CheckoutButton({ plan }: { plan: Plan }) {
         Checkout link coming soon
       </span>
       <p style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, lineHeight: 1.5, color: "var(--ink-muted)", margin: "12px 0 0", textAlign: "center" }}>
-        Secure Stripe checkout is being finalized — book a free call and Scott will get you enrolled
+        Secure Stripe checkout is being finalized. Book a free call and Scott will get you enrolled
         right away.
       </p>
     </div>

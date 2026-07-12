@@ -3,8 +3,8 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { Icon } from "@/components/Icon";
 import { CtaButton } from "@/components/CtaButton";
-import { ImageSlot } from "@/components/ImageSlot";
-import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import Image from "next/image";
+import { TestimonialWall } from "@/components/TestimonialWall";
 import { SCORES } from "@/lib/content";
 import type { IconName } from "@/components/Icon";
 
@@ -39,7 +39,7 @@ const HOW: { icon: IconName; title: string; desc: string }[] = [
   {
     icon: "zap",
     title: "Earn XP on every drill",
-    desc: "Graded on your process, not just the answer — so every rep actually teaches you something.",
+    desc: "Graded on your process, not just the answer. So every rep actually teaches you something.",
   },
   {
     icon: "flame-gold",
@@ -82,7 +82,7 @@ export default function HomePage() {
         >
           <Reveal>
             <span className="paper-tag">
-              Taught by a <b style={{ color: "var(--accent)", fontWeight: 700 }}>1580</b> scorer —{" "}
+              Taught by a <b style={{ color: "var(--accent)", fontWeight: 700 }}>1580</b> scorer,{" "}
               <b style={{ color: "var(--accent)", fontWeight: 700 }}>four</b> perfect 800s.
             </span>
 
@@ -117,7 +117,7 @@ export default function HomePage() {
             <p style={{ fontSize: 17, lineHeight: 1.65, color: "var(--cream-soft)", maxWidth: "32em", margin: "22px 0 0" }}>
               I&apos;m Scott. I help students master the new Digital SAT with Desmos strategies,
               reading systems, grammar shortcuts, and a personalized plan built around their
-              weaknesses — the same system that&apos;s moved{" "}
+              weaknesses, the same system that&apos;s moved{" "}
               <b style={{ color: "var(--cream)" }}>400+ students</b> toward 1500.
             </p>
 
@@ -195,8 +195,8 @@ export default function HomePage() {
                 transform: "rotate(1.2deg)",
               }}
             >
-              <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5" }}>
-                <ImageSlot label="Portrait of Scott — 4×5" />
+              <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5", overflow: "hidden", borderRadius: 2 }}>
+                <Image src="/scott.png" alt="Scott, a 1580 SAT scorer" fill sizes="(max-width: 1024px) 90vw, 400px" style={{ objectFit: "cover" }} priority />
               </div>
               <div
                 style={{
@@ -208,7 +208,7 @@ export default function HomePage() {
                 }}
               >
                 <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, color: "var(--ink)" }}>
-                  Scott — <em style={{ fontStyle: "normal", color: "var(--accent)" }}>1580 SAT</em>
+                  Scott · <em style={{ fontStyle: "normal", color: "var(--accent)" }}>1580 SAT</em>
                 </span>
                 <span
                   style={{
@@ -233,7 +233,7 @@ export default function HomePage() {
           <Reveal style={{ textAlign: "center", maxWidth: "42em", margin: "0 auto" }}>
             <div style={eyebrow}>Your road to 1500</div>
             <h2 style={{ ...serifH, fontSize: "clamp(30px,3.6vw,44px)", lineHeight: 1.06, margin: "14px 0 0" }}>
-              A clear path — one pattern at a time.
+              A clear path, one pattern at a time.
             </h2>
             <p style={{ fontSize: 16.5, lineHeight: 1.6, color: "var(--ink-soft)", margin: "14px 0 0" }}>
               No more random practice. Every step is mapped, so you always know exactly what moves
@@ -323,7 +323,7 @@ export default function HomePage() {
               <OfferingCard
                 href="/blueprint"
                 iconName="layers"
-                title="The 1500 Blueprint"
+                title="The Blueprint"
                 sub="Self-paced system"
                 body="Courses, Desmos drills, 5 practice tests, and a 1,200+ question bank. Earn XP as you master each pattern."
                 tags={["1,200+ questions", "5 practice tests", "Self-paced"]}
@@ -336,7 +336,7 @@ export default function HomePage() {
                 iconName="target"
                 title="1-on-1 Coaching"
                 sub="Work directly with Scott"
-                body="A custom plan, weekly reviews, and strategies built around your exact weak spots — with Blueprint access included."
+                body="A custom plan, weekly reviews, and strategies built around your exact weak spots, with Blueprint access included."
                 tags={["+150 pts avg", "Weekly reviews", "Any goal"]}
                 cta="Explore tutoring"
                 goldTop
@@ -405,7 +405,7 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={80}>
-            <TestimonialCarousel />
+            <TestimonialWall count={6} />
           </Reveal>
 
           <Reveal delay={140} style={{ display: "flex", justifyContent: "center", marginTop: 40 }}>
@@ -449,12 +449,12 @@ export default function HomePage() {
                 maxWidth: 400,
               }}
             >
-              <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5" }}>
-                <ImageSlot label="Photo of Scott" />
+              <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5", overflow: "hidden", borderRadius: 2 }}>
+                <Image src="/scott.png" alt="Scott, four-time perfect-800 Math scorer" fill sizes="(max-width: 1024px) 90vw, 400px" style={{ objectFit: "cover" }} />
               </div>
               <div style={{ padding: "12px 4px 2px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--ink)" }}>
-                  4× perfect 800 — SAT Math
+                  4× perfect 800 · SAT Math
                 </span>
                 <span style={{ color: "var(--gold-600)", display: "inline-flex" }}>
                   <Icon name="trophy" size={18} />
@@ -480,7 +480,7 @@ export default function HomePage() {
               practice with a system that actually matches the test.
             </p>
             <p style={{ fontSize: 16, lineHeight: 1.65, color: "var(--ink-soft)", margin: "14px 0 0" }}>
-              Through The 1500 Blueprint and private tutoring, I help students study with structure,
+              Through The Blueprint and private tutoring, I help students study with structure,
               accountability, and the strategies they need to raise their scores.
             </p>
             <div style={{ marginTop: 28 }}>
@@ -783,7 +783,7 @@ function ResultsMosaic() {
             </span>
           </div>
           <div style={{ fontSize: 13, color: "var(--ink-muted)", marginTop: 8, maxWidth: "30em" }}>
-            You&apos;re learning the test from someone who has actually beaten it — four times over.
+            You&apos;re learning the test from someone who has actually beaten it, four times over.
           </div>
         </div>
       </div>

@@ -4,12 +4,12 @@ import { CountUp } from "@/components/CountUp";
 import { GrowBar } from "@/components/GrowBar";
 import { Icon } from "@/components/Icon";
 import { CtaButton } from "@/components/CtaButton";
-import { ImageSlot } from "@/components/ImageSlot";
 import { Check } from "@/components/Check";
-import { BP_FEATURES } from "@/lib/content";
+import { HeroVideo } from "@/components/HeroVideo";
+import { BP_FEATURES, BLUEPRINT_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "The 1500 Blueprint — Self-paced Digital SAT system",
+  title: "The Blueprint: Self-paced Digital SAT system",
   description:
     "A complete SAT prep system for the new Digital SAT: step-by-step courses, Desmos drills, 5 practice tests, a 1,200+ question bank, and XP, streaks & mastery.",
 };
@@ -44,17 +44,17 @@ export default function BlueprintPage() {
           <Reveal>
             <div style={eyebrow}>For students who want a clear system</div>
             <h1 style={{ ...serifH, fontSize: "clamp(36px,4.8vw,56px)", lineHeight: 1.03, margin: "14px 0 0" }}>
-              The 1500 <em style={{ fontStyle: "normal", color: "var(--accent)" }}>Blueprint.</em>
+              The <em style={{ fontStyle: "normal", color: "var(--accent)" }}>Blueprint.</em>
             </h1>
             <p style={{ fontSize: 17, lineHeight: 1.62, color: "var(--ink-soft)", maxWidth: "33em", margin: "18px 0 0" }}>
-              A complete SAT prep system built for the new Digital SAT — with step-by-step lessons,
+              A complete SAT prep system built for the new Digital SAT, with step-by-step lessons,
               targeted practice, and weekly support to help you raise your score.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 32, margin: "26px 0 0" }}>
               {[
                 { node: <CountUp value={1200} suffix="+" />, label: "questions" },
                 { node: <CountUp value={5} />, label: "practice tests" },
-                { node: <CountUp value={25} />, label: "skill patterns" },
+                { node: <CountUp value={50} suffix="+" />, label: "hours of video content" },
               ].map((stat, i) => (
                 <div key={i}>
                   <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 28, color: "var(--ink)", lineHeight: 1 }}>
@@ -67,7 +67,7 @@ export default function BlueprintPage() {
               ))}
             </div>
             <div style={{ marginTop: 28 }}>
-              <CtaButton href="/tutoring#pricing" variant="ink" size="md" arrow>
+              <CtaButton href={BLUEPRINT_URL} variant="ink" size="md" arrow>
                 Get the Blueprint
               </CtaButton>
             </div>
@@ -84,12 +84,16 @@ export default function BlueprintPage() {
                 transform: "rotate(0.8deg)",
               }}
             >
-              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10" }}>
-                <ImageSlot label="Blueprint course screenshot" />
+              <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 10", overflow: "hidden", borderRadius: 2, background: "var(--navy-deep)" }}>
+                <HeroVideo
+                  src="/videos/blueprint-hero.mp4"
+                  poster="/videos/blueprint-poster.jpg"
+                  label="Inside The Blueprint course"
+                />
               </div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 4px 2px" }}>
                 <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
-                  Course preview — The 1500 Blueprint
+                  Course preview · The Blueprint
                 </span>
                 <span style={{ display: "inline-flex", color: "var(--gold-600)" }}>
                   <Icon name="zap" size={16} />
@@ -166,7 +170,7 @@ export default function BlueprintPage() {
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.62, color: "var(--ink-soft)", margin: "16px 0 0", maxWidth: "30em" }}>
               Every drill is graded on your process, not just the pick. XP, streaks, and a mastery
-              bar turn &quot;study more&quot; into a clear, motivating system — so you always know
+              bar turn &quot;study more&quot; into a clear, motivating system, so you always know
               you&apos;re moving toward 1500.
             </p>
             <ul style={{ listStyle: "none", margin: "22px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>
@@ -306,8 +310,8 @@ export default function BlueprintPage() {
               around you.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, justifyContent: "center", marginTop: 28 }}>
-              <CtaButton href="/tutoring#pricing" variant="cream" size="md" arrow>
-                See plans &amp; pricing
+              <CtaButton href={BLUEPRINT_URL} variant="cream" size="md" arrow>
+                Get the Blueprint
               </CtaButton>
               <CtaButton href="/tutoring" variant="ghost" size="md">
                 Explore 1-on-1 coaching

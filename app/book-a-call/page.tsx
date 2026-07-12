@@ -6,7 +6,7 @@ import { Check } from "@/components/Check";
 import { CALENDLY_URL, getPlan } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Book a free call — 1-on-1 SAT coaching with Scott",
+  title: "Book a free call: 1-on-1 SAT coaching with Scott",
   description:
     "Grab a time to talk with Scott about your goal score, timeline, and the fastest plan to get there. No pressure, no hard sell.",
 };
@@ -28,10 +28,10 @@ const serifH = {
 };
 
 const EXPECT = [
-  "A relaxed 15-minute call — no pressure, no hard sell",
+  "A relaxed 15-minute call, no pressure, no hard sell",
   "We pinpoint your target score and test date",
   "You get an honest recommendation on where to start",
-  "Enroll whenever you're ready — Blueprint access starts day one",
+  "Enroll whenever you're ready. Blueprint access starts day one",
 ];
 
 export default async function BookACallPage({
@@ -114,7 +114,7 @@ export default async function BookACallPage({
 
               <div style={{ marginTop: 20 }}>
                 <CtaButton href={plan ? `/enroll?plan=${plan.id}` : "/tutoring#pricing"} variant="outline" size="md" arrow>
-                  {plan ? "Skip the call — enroll now" : "See all plans"}
+                  {plan ? "Skip the call, enroll now" : "See all plans"}
                 </CtaButton>
               </div>
             </Reveal>
@@ -194,7 +194,7 @@ function BookingEmbed() {
           Calendly booking widget
         </div>
         <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-muted)", maxWidth: "28em", margin: 0 }}>
-          Scott&apos;s scheduling link drops in right here — you&apos;ll pick a time without leaving
+          Scott&apos;s scheduling link drops in right here. You&apos;ll pick a time without leaving
           the page.
         </p>
         <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>
