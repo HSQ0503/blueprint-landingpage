@@ -5,7 +5,7 @@ import { Icon } from "@/components/Icon";
 import { CtaButton } from "@/components/CtaButton";
 import Image from "next/image";
 import { TestimonialWall } from "@/components/TestimonialWall";
-import { SCORES } from "@/lib/content";
+import { SCORES, BLUEPRINT_URL } from "@/lib/content";
 import type { IconName } from "@/components/Icon";
 
 const eyebrow = {
@@ -125,7 +125,7 @@ export default function HomePage() {
               <CtaButton href="/tutoring#pricing" variant="cream" size="lg" arrow>
                 Master the Digital SAT
               </CtaButton>
-              <CtaButton href="/blueprint" variant="ghost" size="lg">
+              <CtaButton href={BLUEPRINT_URL} variant="ghost" size="lg">
                 Explore the Blueprint
               </CtaButton>
             </div>
@@ -321,7 +321,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <Reveal>
               <OfferingCard
-                href="/blueprint"
+                href={BLUEPRINT_URL}
                 iconName="layers"
                 title="The Blueprint"
                 sub="Self-paced system"

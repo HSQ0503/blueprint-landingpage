@@ -5,13 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { CtaButton } from "@/components/CtaButton";
+import { BLUEPRINT_URL } from "@/lib/content";
 
 type NavItem = { label: string; href: string; activePath?: string };
 
 const NAV: NavItem[] = [
   { label: "Home", href: "/", activePath: "/" },
   { label: "Tutoring", href: "/tutoring", activePath: "/tutoring" },
-  { label: "Blueprint", href: "/blueprint", activePath: "/blueprint" },
+  { label: "Blueprint", href: BLUEPRINT_URL },
   { label: "Reviews", href: "/results", activePath: "/results" },
   { label: "Pricing", href: "/tutoring#pricing" },
 ];

@@ -195,8 +195,8 @@ export const PLANS: Plan[] = [
 // Scott's scheduling link (Calendly). Leave empty to show the placeholder embed.
 export const CALENDLY_URL: string = "";
 
-// Scott's self-paced Blueprint product site (external). Confirm the exact URL.
-export const BLUEPRINT_URL: string = "https://1500blueprint.com";
+// Scott's self-paced Blueprint product site (external).
+export const BLUEPRINT_URL: string = "https://www.the1500blueprint.com/homepage";
 
 export function getPlan(id?: string | null): Plan | undefined {
   if (!id) return undefined;

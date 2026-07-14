@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { CtaButton } from "@/components/CtaButton";
 import { TestimonialWall } from "@/components/TestimonialWall";
+import { BLUEPRINT_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Wall of Wins: Real student SAT score jumps",
@@ -123,7 +124,7 @@ export default function ResultsPage() {
               <CtaButton href="/tutoring#pricing" variant="cream" size="md" arrow>
                 See plans &amp; pricing
               </CtaButton>
-              <CtaButton href="/blueprint" variant="ghost" size="md">
+              <CtaButton href={BLUEPRINT_URL} variant="ghost" size="md">
                 Explore the Blueprint
               </CtaButton>
             </div>

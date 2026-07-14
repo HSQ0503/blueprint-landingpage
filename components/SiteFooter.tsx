@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { BLUEPRINT_URL } from "@/lib/content";
 
 const colHead = {
   fontFamily: "var(--font-mono-ui)",
@@ -15,7 +16,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Pages",
     links: [
       { label: "Home", href: "/" },
-      { label: "The Blueprint", href: "/blueprint" },
+      { label: "The Blueprint", href: BLUEPRINT_URL },
       { label: "About", href: "/#about" },
     ],
   },
