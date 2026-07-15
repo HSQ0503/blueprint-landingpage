@@ -1,15 +1,7 @@
 import type { IconName } from "@/components/Icon";
 
 export type Feature = { icon: IconName; title: string; desc: string };
-export type ScoreCard = {
-  total: number;
-  rw: number;
-  math: number;
-  date: string;
-  delta?: string;
-};
 export type Faq = { q: string; a: string };
-export type Proof = { from: number; to: number };
 // A real student testimonial screenshot (in public/testimonials).
 export type Shot = { src: string; alt: string; w: number; h: number };
 
@@ -44,19 +36,6 @@ export const BP_FEATURES: Feature[] = [
     title: "XP, streaks & mastery",
     desc: "Earn XP, build streaks, and watch your mastery bar climb toward 1500.",
   },
-];
-
-export const PROOF: Proof[] = [
-  { from: 680, to: 780 },
-  { from: 690, to: 790 },
-  { from: 620, to: 750 },
-];
-
-export const SCORES: ScoreCard[] = [
-  { total: 1500, rw: 720, math: 780, date: "SAT · March 14, 2026", delta: "" },
-  { total: 1560, rw: 770, math: 790, date: "SAT · March 14, 2026", delta: "+140 pts" },
-  { total: 1510, rw: 720, math: 790, date: "SAT · May 2, 2026", delta: "+140 pts" },
-  { total: 1420, rw: 710, math: 710, date: "SAT · March 14, 2026", delta: "" },
 ];
 
 // Real student testimonial screenshots (DMs + score reports) for the walls on
@@ -118,6 +97,7 @@ export type Plan = {
   cta: string;
   primary: "enroll" | "call"; // what the main button does
   popular?: boolean;
+  accent?: "blue" | "gold"; // card highlight on the pricing grids
   guarantee?: boolean;
   stripeUrl?: string; // Scott's Stripe Payment Link; empty => placeholder checkout
 };
@@ -156,7 +136,7 @@ export const PLANS: Plan[] = [
     ],
     cta: "Book a free call",
     primary: "call",
-    popular: true,
+    accent: "blue",
     stripeUrl: "",
   },
   {
@@ -171,8 +151,10 @@ export const PLANS: Plan[] = [
       "12 months of The Blueprint ($840 value)",
       "Add hours anytime at $175/hr",
     ],
-    cta: "Book a free call",
+    cta: "Book Your Guarantee Call",
     primary: "call",
+    popular: true,
+    accent: "gold",
     guarantee: true,
     stripeUrl: "",
   },
@@ -186,8 +168,9 @@ export const PLANS: Plan[] = [
       "Work on exactly what you choose",
       "No commitment, book as needed",
     ],
+    // Pays immediately — no free call step for single sessions.
     cta: "Book a Session",
-    primary: "call",
+    primary: "enroll",
     stripeUrl: "",
   },
 ];

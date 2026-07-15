@@ -214,6 +214,21 @@ section[id],
   box-shadow: 1px 1px 0 var(--navy-ink);
 }
 
+/* Gold reward button (the Guarantee tier CTA). */
+.btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.btn-gold:hover {
+  background: var(--gold-600);
+  color: var(--ink);
+}
+.btn-gold:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
 /* Outline on cream. */
 .btn-outline {
   background: transparent;
@@ -337,26 +352,26 @@ section[id],
   transition: color 0.15s;
 }
 
-/* Featured pricing tier — a cyan-blue highlight orbits the card border.
-   The ::before is a conic gradient masked to just the 3px ring. */
-.tier-featured {
+/* Hero pricing tier (The Guarantee) — a thick gold highlight orbits the card.
+   The ::before is a conic gradient masked to just the 5px ring. */
+.tier-gold {
   position: relative;
 }
-.tier-featured::before {
+.tier-gold::before {
   content: "";
   position: absolute;
-  inset: -3px;
-  border-radius: 6px;
-  padding: 3px;
+  inset: -7px;
+  border-radius: 9px;
+  padding: 5px;
   background: conic-gradient(
     from var(--hl-angle, 0deg),
-    var(--accent) 0deg,
-    var(--accent) 40deg,
-    var(--sky) 95deg,
-    var(--brand) 125deg,
-    var(--sky) 155deg,
-    var(--accent) 220deg,
-    var(--accent) 360deg
+    var(--gold-700) 0deg,
+    var(--gold) 55deg,
+    #fff3c4 100deg,
+    #ffe9a8 130deg,
+    #fff3c4 160deg,
+    var(--gold) 215deg,
+    var(--gold-700) 360deg
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -364,11 +379,18 @@ section[id],
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  animation: hl-orbit 3.2s linear infinite;
+  animation: hl-orbit 2.4s linear infinite;
 }
 /* Solid ring when motion is reduced (the global rule already halts the spin). */
 @media (prefers-reduced-motion: reduce) {
-  .tier-featured::before {
-    background: var(--brand);
+  .tier-gold::before {
+    background: var(--gold);
+  }
+}
+/* Raised above its neighbors on desktop (margin, not transform — Reveal
+   drives the element's inline transform). */
+@media (min-width: 768px) {
+  .tier-raise {
+    margin-top: -12px;
   }
 }

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
-type Variant = "ink" | "cream" | "ghost" | "outline";
+type Variant = "ink" | "cream" | "ghost" | "outline" | "gold";
 type Size = "lg" | "md" | "about" | "card" | "nav" | "session";
 
 const SIZES: Record<Size, CSSProperties> = {

@@ -5,7 +5,7 @@ import { Icon } from "@/components/Icon";
 import { CtaButton } from "@/components/CtaButton";
 import Image from "next/image";
 import { TestimonialWall } from "@/components/TestimonialWall";
-import { SCORES, BLUEPRINT_URL } from "@/lib/content";
+import { BLUEPRINT_URL } from "@/lib/content";
 import type { IconName } from "@/components/Icon";
 
 const eyebrow = {
@@ -33,24 +33,6 @@ const ROAD: { icon: IconName; title: string; sub: string }[] = [
   { icon: "drills", title: "Pattern drills", sub: "Earn XP" },
   { icon: "aimath", title: "Desmos mastery", sub: "Calc strategies" },
   { icon: "tests", title: "Practice tests", sub: "5 full-length" },
-];
-
-const HOW: { icon: IconName; title: string; desc: string }[] = [
-  {
-    icon: "zap",
-    title: "Earn XP on every drill",
-    desc: "Graded on your process, not just the answer. So every rep actually teaches you something.",
-  },
-  {
-    icon: "flame-gold",
-    title: "Keep your streak alive",
-    desc: "Two clean drills a day builds the habit that gets you to test day ready, not cramming.",
-  },
-  {
-    icon: "target",
-    title: "Master one pattern at a time",
-    desc: "Watch your mastery bar climb as you turn weak spots into strengths, pattern by pattern.",
-  },
 ];
 
 export default function HomePage() {
@@ -346,54 +328,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ======================= HOW IT WORKS ======================= */}
-      <section className="py-16 lg:py-[88px]" style={ruled}>
-        <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <Reveal style={{ textAlign: "center", maxWidth: "36em", margin: "0 auto 40px" }}>
-            <div style={eyebrow}>How it works</div>
-            <h2 style={{ ...serifH, fontSize: "clamp(28px,3.4vw,42px)", lineHeight: 1.06, margin: "14px 0 0" }}>
-              Earn XP. Build streaks. Master patterns.
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            {HOW.map((card, i) => (
-              <Reveal
-                key={card.title}
-                delay={i * 90}
-                style={{
-                  background: "var(--card)",
-                  border: "2px solid var(--ink)",
-                  borderRadius: 3,
-                  padding: 24,
-                  boxShadow: "var(--shadow-card)",
-                }}
-              >
-                <span
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 2,
-                    background: "var(--tag)",
-                    color: "var(--ink)",
-                    border: "2px solid var(--ink)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Icon name={card.icon} size={24} />
-                </span>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 19, color: "var(--ink)", marginTop: 16 }}>
-                  {card.title}
-                </div>
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: "var(--ink-muted)", margin: "7px 0 0" }}>{card.desc}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ======================= TESTIMONIALS ======================= */}
       <section id="testimonials" className="py-16 lg:py-[88px]" style={ruled}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
@@ -412,21 +346,6 @@ export default function HomePage() {
             <CtaButton href="/results" variant="ink" size="md" arrow>
               See all student results
             </CtaButton>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ======================= WALL OF WINS (pine band) ======================= */}
-      <section style={{ ...ruled, background: "var(--navy)" }} className="py-16 lg:py-[88px]">
-        <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <Reveal>
-            <span className="paper-tag" style={{ transform: "rotate(-1.6deg)" }}>
-              Wall of <b style={{ color: "var(--accent)" }}>wins.</b>
-            </span>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <ResultsMosaic />
           </Reveal>
         </div>
       </section>
@@ -650,163 +569,5 @@ function OfferingCard({
         </svg>
       </div>
     </Link>
-  );
-}
-
-/* ---- Results mosaic on the pine band: cream/ink/gold tiles ---- */
-
-function ScoreTile({ score, invert }: { score: (typeof SCORES)[number]; invert?: boolean }) {
-  const bg = invert ? "var(--navy-deep)" : "var(--card)";
-  const fg = invert ? "var(--cream)" : "var(--ink)";
-  const meta = invert ? "rgba(247,241,227,.6)" : "var(--ink-muted)";
-  return (
-    <div
-      style={{
-        background: bg,
-        border: "2px solid var(--ink)",
-        borderRadius: 3,
-        boxShadow: "5px 5px 0 var(--navy-ink)",
-        padding: "18px 20px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        minHeight: 150,
-      }}
-    >
-      <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 9.5, letterSpacing: "0.1em", textTransform: "uppercase", color: meta }}>
-        Total score
-      </div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 6, flexWrap: "wrap" }}>
-        <CountUp
-          value={score.total}
-          style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 48, color: fg, lineHeight: 1 }}
-        />
-        <div style={{ display: "flex", gap: 14 }}>
-          {[
-            { k: "R/W", v: score.rw },
-            { k: "Math", v: score.math },
-          ].map((s) => (
-            <div key={s.k}>
-              <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 8.5, letterSpacing: "0.06em", textTransform: "uppercase", color: meta }}>
-                {s.k}
-              </div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, color: fg, marginTop: 1 }}>{s.v}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div
-        style={{
-          marginTop: 12,
-          paddingTop: 10,
-          borderTop: `2px dashed ${invert ? "rgba(247,241,227,.25)" : "rgba(26,35,62,.22)"}`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 8,
-        }}
-      >
-        <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, color: meta }}>{score.date}</span>
-        {score.delta ? (
-          <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, fontWeight: 600, color: invert ? "var(--gold)" : "var(--accent)" }}>
-            {score.delta}
-          </span>
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
-function ResultsMosaic() {
-  return (
-    <div style={{ marginTop: 30 }}>
-      <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
-        {/* Gold hero metric */}
-        <div
-          className="sm:col-span-2"
-          style={{
-            background: "var(--gold)",
-            border: "2px solid var(--ink)",
-            borderRadius: 3,
-            boxShadow: "6px 6px 0 var(--navy-ink)",
-            padding: "22px 24px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minHeight: 150,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 30, color: "var(--ink)", lineHeight: 1 }}>+</span>
-            <CountUp
-              value={150}
-              style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 68, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1 }}
-            />
-          </div>
-          <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: "var(--ink)", marginTop: 8 }}>
-            average point gain
-          </div>
-          <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.05em", textTransform: "uppercase", color: "rgba(26,35,62,.66)", marginTop: 4 }}>
-            across 400+ students on 1-on-1 coaching
-          </div>
-        </div>
-
-        <ScoreTile score={SCORES[1]} invert />
-        <ScoreTile score={SCORES[2]} />
-        <ScoreTile score={SCORES[0]} />
-        <ScoreTile score={SCORES[3]} />
-
-        {/* Scott's own credential */}
-        <div
-          className="sm:col-span-2"
-          style={{
-            background: "var(--card)",
-            border: "2px solid var(--ink)",
-            borderRadius: 3,
-            boxShadow: "6px 6px 0 var(--navy-ink)",
-            padding: "22px 24px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            minHeight: 150,
-          }}
-        >
-          <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 9.5, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
-            Scott&apos;s own SAT
-          </div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginTop: 6, flexWrap: "wrap" }}>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 58, color: "var(--accent)", letterSpacing: "-0.02em", lineHeight: 1 }}>
-              1580
-            </span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 17, color: "var(--ink)" }}>
-              & four perfect 800s in Math
-            </span>
-          </div>
-          <div style={{ fontSize: 13, color: "var(--ink-muted)", marginTop: 8, maxWidth: "30em" }}>
-            You&apos;re learning the test from someone who has actually beaten it, four times over.
-          </div>
-        </div>
-      </div>
-
-      <div style={{ marginTop: 18, display: "flex", gap: 8, flexWrap: "wrap" }}>
-        {["GRATEFUL FOR YOU BRO", "LFG", "1400 → COMING IN AUGUST"].map((tag) => (
-          <span
-            key={tag}
-            style={{
-              fontFamily: "var(--font-mono-ui)",
-              fontSize: 10.5,
-              fontWeight: 500,
-              letterSpacing: "0.05em",
-              color: "var(--cream)",
-              border: "1.5px solid rgba(247,241,227,.5)",
-              borderRadius: 2,
-              padding: "5px 11px",
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }

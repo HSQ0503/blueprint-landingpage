@@ -103,14 +103,19 @@ export function SiteFooter() {
             © SCOTT&apos;S SAT PREP LLC. ALL RIGHTS RESERVED.
           </div>
           <div style={{ display: "flex", gap: 18 }}>
-            {["YouTube", "Instagram", "X"].map((s) => (
+            {[
+              { label: "YouTube", href: "https://www.youtube.com/@scottsSATprep" },
+              { label: "Instagram", href: "https://www.instagram.com/scottssatprep/" },
+            ].map((s) => (
               <a
-                key={s}
-                href="#"
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="link-foot"
                 style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11.5, letterSpacing: "0.06em", textTransform: "uppercase" }}
               >
-                {s}
+                {s.label}
               </a>
             ))}
           </div>

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { Icon } from "@/components/Icon";
 import { CtaButton } from "@/components/CtaButton";
 import { Check } from "@/components/Check";
 import { Faq } from "@/components/Faq";
 import { TestimonialWall } from "@/components/TestimonialWall";
 import { HeroVideo } from "@/components/HeroVideo";
-import { PROOF, PLANS } from "@/lib/content";
+import { PLANS } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "1-on-1 Coaching: Private Digital SAT tutoring with Scott",
@@ -42,6 +41,8 @@ const monoItem = {
   lineHeight: 1.55,
   color: "var(--ink)",
 } as const;
+
+const dollars = (s: string) => Number(s.replace(/[^0-9.]/g, "")) || 0;
 
 // The three enrollable tiers (the on-demand hour renders separately below).
 const TIERS = PLANS.filter((p) => p.id !== "hour");
@@ -93,14 +94,6 @@ export default function TutoringPage() {
                   label="Scott coaching a live 1-on-1 session"
                 />
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 4px 2px" }}>
-                <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-muted)" }}>
-                  Weekly reviews · accountability that sticks
-                </span>
-                <span style={{ display: "inline-flex", color: "var(--ink)" }}>
-                  <Icon name="history" size={16} />
-                </span>
-              </div>
             </div>
           </Reveal>
         </div>
@@ -125,45 +118,6 @@ export default function TutoringPage() {
         </div>
       </section>
 
-      {/* ========================= COMPACT PROOF ========================= */}
-      <section className="py-14" style={ruled}>
-        <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
-          <Reveal style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
-            <div>
-              <div style={eyebrow}>Proof it works</div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 24, color: "var(--ink)", marginTop: 8 }}>
-                400+ students · avg <em style={{ fontStyle: "normal", color: "var(--accent)" }}>+150 points</em>
-              </div>
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              {PROOF.map((p, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 9,
-                    background: "var(--card)",
-                    border: "2px solid var(--ink)",
-                    borderRadius: 2,
-                    padding: "10px 14px",
-                    boxShadow: "3px 3px 0 var(--ink)",
-                    fontFamily: "var(--font-mono-ui)",
-                    fontSize: 14,
-                  }}
-                >
-                  <span style={{ color: "var(--ink-muted)" }}>{p.from}</span>
-                  <span aria-hidden style={{ color: "var(--accent)", fontWeight: 600 }}>
-                    →
-                  </span>
-                  <span style={{ fontWeight: 600, color: "var(--ink)" }}>{p.to}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ===================== PRICING (pine band) ===================== */}
       <section id="pricing" className="py-16 lg:py-[88px]" style={{ ...ruled, background: "var(--navy)" }}>
         <div className="mx-auto px-6" style={{ maxWidth: 1160 }}>
@@ -181,21 +135,29 @@ export default function TutoringPage() {
             </p>
           </Reveal>
 
-          {/* Three tiers, side by side. */}
+          {/* Three tiers, side by side. The Guarantee is the hero: gold ring,
+              gold-tinted card, raised above its neighbors. */}
           <div className="mt-11 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
-            {TIERS.map((tier, i) => (
+            {TIERS.map((tier, i) => {
+              const gold = tier.accent === "gold";
+              const savings = tier.was ? dollars(tier.was) - dollars(tier.price) : 0;
+              return (
               <Reveal
                 key={tier.name}
                 delay={i * 80}
-                className={tier.popular ? "tier-featured" : undefined}
+                className={gold ? "tier-gold tier-raise" : undefined}
                 style={{
                   position: "relative",
                   display: "flex",
                   flexDirection: "column",
-                  background: "var(--card)",
-                  border: "2px solid var(--ink)",
+                  background: gold ? "#fff8e1" : "var(--card)",
+                  border: gold
+                    ? "3px solid var(--gold-600)"
+                    : tier.accent === "blue"
+                      ? "3px solid var(--accent)"
+                      : "2px solid var(--ink)",
                   borderRadius: 3,
-                  boxShadow: tier.popular ? "none" : "6px 6px 0 var(--navy-ink)",
+                  boxShadow: gold ? "10px 10px 0 var(--navy-ink)" : "6px 6px 0 var(--navy-ink)",
                   padding: "26px 24px",
                 }}
               >
@@ -203,20 +165,21 @@ export default function TutoringPage() {
                   <span
                     style={{
                       position: "absolute",
-                      top: -13,
+                      top: -15,
                       left: "50%",
                       transform: "translateX(-50%) rotate(-1.5deg)",
                       fontFamily: "var(--font-mono-ui)",
                       fontWeight: 600,
-                      fontSize: 10,
+                      fontSize: 10.5,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       whiteSpace: "nowrap",
-                      background: "var(--accent)",
-                      color: "var(--cream)",
+                      background: "var(--gold)",
+                      color: "var(--ink)",
                       border: "2px solid var(--ink)",
                       borderRadius: 2,
-                      padding: "4px 12px",
+                      padding: "5px 13px",
+                      boxShadow: "2px 2px 0 var(--ink)",
                     }}
                   >
                     Most popular
@@ -232,7 +195,27 @@ export default function TutoringPage() {
                     {tier.was}
                   </span>
                 </div>
-                <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--accent)", marginTop: 10 }}>
+                {gold && savings > 0 ? (
+                  <span
+                    style={{
+                      alignSelf: "flex-start",
+                      marginTop: 12,
+                      fontFamily: "var(--font-mono-ui)",
+                      fontWeight: 600,
+                      fontSize: 10,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      background: "var(--gold)",
+                      color: "var(--ink)",
+                      border: "2px solid var(--ink)",
+                      borderRadius: 2,
+                      padding: "4px 9px",
+                    }}
+                  >
+                    Best value — save ${savings.toLocaleString("en-US")}
+                  </span>
+                ) : null}
+                <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, letterSpacing: "0.05em", textTransform: "uppercase", color: gold ? "var(--gold-700)" : "var(--accent)", marginTop: 10 }}>
                   {tier.who}
                 </div>
 
@@ -280,7 +263,7 @@ export default function TutoringPage() {
                 <div style={{ marginTop: "auto", paddingTop: 22 }}>
                   <CtaButton
                     href={tier.primary === "call" ? `/book-a-call?plan=${tier.id}` : `/enroll?plan=${tier.id}`}
-                    variant="ink"
+                    variant={gold ? "gold" : "ink"}
                     size="card"
                   >
                     {tier.cta}
@@ -298,7 +281,8 @@ export default function TutoringPage() {
                   </Link>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
 
           {/* On-demand hour */}
@@ -321,9 +305,10 @@ export default function TutoringPage() {
             <div style={{ fontSize: 14.5, color: "var(--cream-soft)" }}>
               <b style={{ color: "var(--cream)", fontFamily: "var(--font-display)", fontSize: 16 }}>Just need an hour?</b>{" "}
               Book an on-demand session for{" "}
-              <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$195/hr</b>.
+              <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$195/hr</b> — pay
+              and pick your time, no call needed.
             </div>
-            <CtaButton href="/book-a-call?plan=hour" variant="cream" size="session">
+            <CtaButton href="/enroll?plan=hour" variant="cream" size="session">
               Book a Session
             </CtaButton>
           </Reveal>

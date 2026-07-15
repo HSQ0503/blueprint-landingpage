@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Reveal } from "@/components/Reveal";
 import { CtaButton } from "@/components/CtaButton";
 import { Check } from "@/components/Check";
@@ -41,6 +42,9 @@ export default async function BookACallPage({
 }) {
   const { plan: planId } = await searchParams;
   const plan = getPlan(planId);
+
+  // On-demand sessions are pay-to-book — no free-call step.
+  if (plan?.id === "hour") redirect(`/enroll?plan=${plan.id}`);
 
   return (
     <main>

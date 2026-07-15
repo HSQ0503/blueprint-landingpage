@@ -156,11 +156,17 @@ export default async function EnrollPage({
                   </span>
                 </div>
 
-                <div style={{ textAlign: "center", marginTop: 14 }}>
-                  <Link href={`/book-a-call?plan=${plan.id}`} className="link-quiet" style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11.5, color: "var(--accent)" }}>
-                    Questions first? Book a free call →
-                  </Link>
-                </div>
+                {plan.id === "hour" ? (
+                  <p style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, lineHeight: 1.55, color: "var(--ink-muted)", margin: "14px 0 0", textAlign: "center" }}>
+                    Pay now, pick your time. Scott sends his scheduling link right after checkout.
+                  </p>
+                ) : (
+                  <div style={{ textAlign: "center", marginTop: 14 }}>
+                    <Link href={`/book-a-call?plan=${plan.id}`} className="link-quiet" style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11.5, color: "var(--accent)" }}>
+                      Questions first? Book a free call →
+                    </Link>
+                  </div>
+                )}
               </Reveal>
             </div>
           ) : (
@@ -172,16 +178,46 @@ export default async function EnrollPage({
                     href={`/enroll?plan=${p.id}`}
                     className="card-lift"
                     style={{
+                      position: "relative",
                       display: "flex",
                       flexDirection: "column",
-                      background: "var(--card)",
-                      border: p.popular ? "3px solid var(--accent)" : "2px solid var(--ink)",
+                      background: p.accent === "gold" ? "#fff8e1" : "var(--card)",
+                      border:
+                        p.accent === "gold"
+                          ? "3px solid var(--gold-600)"
+                          : p.accent === "blue"
+                            ? "3px solid var(--accent)"
+                            : "2px solid var(--ink)",
                       borderRadius: 3,
                       padding: "22px 22px 24px",
                       height: "100%",
                       textDecoration: "none",
                     }}
                   >
+                    {p.popular ? (
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: -13,
+                          left: "50%",
+                          transform: "translateX(-50%) rotate(-1.5deg)",
+                          fontFamily: "var(--font-mono-ui)",
+                          fontWeight: 600,
+                          fontSize: 10,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          whiteSpace: "nowrap",
+                          background: "var(--gold)",
+                          color: "var(--ink)",
+                          border: "2px solid var(--ink)",
+                          borderRadius: 2,
+                          padding: "4px 11px",
+                          boxShadow: "2px 2px 0 var(--ink)",
+                        }}
+                      >
+                        Most popular
+                      </span>
+                    ) : null}
                     <h2 style={{ ...serifH, fontSize: 21, margin: 0 }}>{p.name}</h2>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 8 }}>
                       <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 28, color: "var(--ink)", lineHeight: 1 }}>{p.price}</span>
@@ -244,8 +280,9 @@ function CheckoutButton({ plan }: { plan: Plan }) {
         Checkout link coming soon
       </span>
       <p style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, lineHeight: 1.5, color: "var(--ink-muted)", margin: "12px 0 0", textAlign: "center" }}>
-        Secure Stripe checkout is being finalized. Book a free call and Scott will get you enrolled
-        right away.
+        {plan.id === "hour"
+          ? "Secure Stripe checkout is being finalized. Email Scott and he'll get your session on the calendar right away."
+          : "Secure Stripe checkout is being finalized. Book a free call and Scott will get you enrolled right away."}
       </p>
     </div>
   );
