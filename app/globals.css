@@ -54,6 +54,7 @@
   --gold: #ffbd20;
   --gold-600: #f0a900;
   --gold-700: #d99a00;
+  --gold-tint: #fff8e1; /* hero-tier card wash */
 
   /* Hard print shadows (no blur) */
   --shadow-card: 4px 4px 0 var(--ink);
@@ -360,8 +361,10 @@ section[id],
 .tier-gold::before {
   content: "";
   position: absolute;
-  inset: -7px;
-  border-radius: 9px;
+  /* Ring sits flush against the card edge — a gap here lets the offset
+     shadow show through as a dark stripe between border and ring. */
+  inset: -5px;
+  border-radius: 6px;
   padding: 5px;
   background: conic-gradient(
     from var(--hl-angle, 0deg),

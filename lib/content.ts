@@ -185,3 +185,8 @@ export function getPlan(id?: string | null): Plan | undefined {
   if (!id) return undefined;
   return PLANS.find((p) => p.id === id);
 }
+
+// Parse a plan price string ("$2,495") into a number, for savings math.
+export function dollars(s: string): number {
+  return Number(s.replace(/[^0-9.]/g, "")) || 0;
+}

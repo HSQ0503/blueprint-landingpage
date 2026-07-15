@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { Check } from "@/components/Check";
-import { PLANS, getPlan, type Plan } from "@/lib/content";
+import { PLANS, getPlan, dollars, type Plan } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Enroll: 1-on-1 SAT coaching with Scott",
@@ -25,8 +25,6 @@ const serifH = {
   letterSpacing: "-0.02em",
   color: "var(--ink)",
 };
-
-const dollars = (s: string) => Number(s.replace(/[^0-9.]/g, "")) || 0;
 
 export default async function EnrollPage({
   searchParams,
@@ -181,7 +179,7 @@ export default async function EnrollPage({
                       position: "relative",
                       display: "flex",
                       flexDirection: "column",
-                      background: p.accent === "gold" ? "#fff8e1" : "var(--card)",
+                      background: p.accent === "gold" ? "var(--gold-tint)" : "var(--card)",
                       border:
                         p.accent === "gold"
                           ? "3px solid var(--gold-600)"
@@ -280,9 +278,17 @@ function CheckoutButton({ plan }: { plan: Plan }) {
         Checkout link coming soon
       </span>
       <p style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, lineHeight: 1.5, color: "var(--ink-muted)", margin: "12px 0 0", textAlign: "center" }}>
-        {plan.id === "hour"
-          ? "Secure Stripe checkout is being finalized. Email Scott and he'll get your session on the calendar right away."
-          : "Secure Stripe checkout is being finalized. Book a free call and Scott will get you enrolled right away."}
+        {plan.id === "hour" ? (
+          <>
+            Secure Stripe checkout is being finalized.{" "}
+            <a href="mailto:scott@scottssatprep.com" className="link-quiet" style={{ color: "var(--accent)" }}>
+              Email Scott
+            </a>{" "}
+            and he&apos;ll get your session on the calendar right away.
+          </>
+        ) : (
+          "Secure Stripe checkout is being finalized. Book a free call and Scott will get you enrolled right away."
+        )}
       </p>
     </div>
   );

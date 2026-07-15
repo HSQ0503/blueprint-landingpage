@@ -6,7 +6,7 @@ import { Check } from "@/components/Check";
 import { Faq } from "@/components/Faq";
 import { TestimonialWall } from "@/components/TestimonialWall";
 import { HeroVideo } from "@/components/HeroVideo";
-import { PLANS } from "@/lib/content";
+import { PLANS, dollars } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "1-on-1 Coaching: Private Digital SAT tutoring with Scott",
@@ -41,8 +41,6 @@ const monoItem = {
   lineHeight: 1.55,
   color: "var(--ink)",
 } as const;
-
-const dollars = (s: string) => Number(s.replace(/[^0-9.]/g, "")) || 0;
 
 // The three enrollable tiers (the on-demand hour renders separately below).
 const TIERS = PLANS.filter((p) => p.id !== "hour");
@@ -150,7 +148,7 @@ export default function TutoringPage() {
                   position: "relative",
                   display: "flex",
                   flexDirection: "column",
-                  background: gold ? "#fff8e1" : "var(--card)",
+                  background: gold ? "var(--gold-tint)" : "var(--card)",
                   border: gold
                     ? "3px solid var(--gold-600)"
                     : tier.accent === "blue"
@@ -215,7 +213,8 @@ export default function TutoringPage() {
                     Best value — save ${savings.toLocaleString("en-US")}
                   </span>
                 ) : null}
-                <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, letterSpacing: "0.05em", textTransform: "uppercase", color: gold ? "var(--gold-700)" : "var(--accent)", marginTop: 10 }}>
+                {/* Ink, not gold-700 — gold-700 on the gold tint fails AA contrast. */}
+                <div style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, letterSpacing: "0.05em", textTransform: "uppercase", color: gold ? "var(--ink)" : "var(--accent)", marginTop: 10 }}>
                   {tier.who}
                 </div>
 
