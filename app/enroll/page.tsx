@@ -213,7 +213,7 @@ export default async function EnrollPage({
                           boxShadow: "2px 2px 0 var(--ink)",
                         }}
                       >
-                        Most popular
+                        Best results
                       </span>
                     ) : null}
                     <h2 style={{ ...serifH, fontSize: 21, margin: 0 }}>{p.name}</h2>

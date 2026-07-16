@@ -11,7 +11,7 @@ import { PLANS, dollars } from "@/lib/content";
 export const metadata: Metadata = {
   title: "1-on-1 Coaching: Private Digital SAT tutoring with Scott",
   description:
-    "Work directly with Scott to master the Digital SAT: custom strategy, weekly reviews, and a plan built around your exact weaknesses. Plans from $595, 100+ point guarantee available.",
+    "Work directly with Scott to master the Digital SAT: custom strategy, weekly reviews, and a plan built around your exact weaknesses. Plans from $995, 100+ point guarantee available.",
 };
 
 const eyebrow = {
@@ -180,7 +180,7 @@ export default function TutoringPage() {
                       boxShadow: "2px 2px 0 var(--ink)",
                     }}
                   >
-                    Most popular
+                    Best results
                   </span>
                 ) : null}
 
@@ -304,7 +304,7 @@ export default function TutoringPage() {
             <div style={{ fontSize: 14.5, color: "var(--cream-soft)" }}>
               <b style={{ color: "var(--cream)", fontFamily: "var(--font-display)", fontSize: 16 }}>Just need an hour?</b>{" "}
               Book an on-demand session for{" "}
-              <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$195/hr</b> — pay
+              <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$215/hr</b> — pay
               and pick your time, no call needed.
             </div>
             <CtaButton href="/enroll?plan=hour" variant="cream" size="session">
