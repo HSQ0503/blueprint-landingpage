@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { Check } from "@/components/Check";
-import { PLANS, getPlan, dollars, type Plan } from "@/lib/content";
+import { PLANS, getPlan, dollars, GUARANTEE_TERMS_URL, type Plan } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Enroll: 1-on-1 SAT coaching with Scott",
@@ -103,7 +103,16 @@ export default async function EnrollPage({
                     </span>
                     <div style={{ fontSize: 12.5, lineHeight: 1.5, color: "var(--ink-soft)" }}>
                       <b style={{ color: "var(--ink)" }}>100+ Point Guarantee.</b> Improve by 100+ points
-                      (or reach 1450+) by the end of the program, or your money back.
+                      (or reach 1450+) by the end of the program, or your money back.{" "}
+                      <a
+                        href={GUARANTEE_TERMS_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-quiet"
+                        style={{ color: "var(--accent)" }}
+                      >
+                        Details
+                      </a>
                     </div>
                   </div>
                 ) : null}
@@ -150,13 +159,14 @@ export default async function EnrollPage({
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7, marginTop: 14, color: "var(--ink-muted)" }}>
                   <LockIcon />
                   <span style={{ fontFamily: "var(--font-mono-ui)", fontSize: 10.5, letterSpacing: "0.04em" }}>
-                    Secure checkout, powered by Stripe
+                    {plan.id === "hour" ? "Secure booking & payment via Calendly" : "Secure checkout, powered by Stripe"}
                   </span>
                 </div>
 
                 {plan.id === "hour" ? (
                   <p style={{ fontFamily: "var(--font-mono-ui)", fontSize: 11, lineHeight: 1.55, color: "var(--ink-muted)", margin: "14px 0 0", textAlign: "center" }}>
-                    Pay now, pick your time. Scott sends his scheduling link right after checkout.
+                    Pick your time and pay in one step — booking and payment happen together on the
+                    scheduling page.
                   </p>
                 ) : (
                   <div style={{ textAlign: "center", marginTop: 14 }}>
@@ -259,11 +269,11 @@ export default async function EnrollPage({
 /* ----------------------------- helpers ----------------------------- */
 
 function CheckoutButton({ plan }: { plan: Plan }) {
-  // Live once Scott's Stripe Payment Link is set on the plan; placeholder until then.
-  if (plan.stripeUrl) {
+  // Live once the plan's checkout link is set; placeholder until then.
+  if (plan.checkoutUrl) {
     return (
-      <a href={plan.stripeUrl} className="btn btn-ink" style={{ width: "100%", minHeight: 52 }}>
-        Proceed to secure checkout
+      <a href={plan.checkoutUrl} className="btn btn-ink" style={{ width: "100%", minHeight: 52 }}>
+        {plan.id === "hour" ? "Book your session" : "Proceed to secure checkout"}
         <ArrowIcon />
       </a>
     );

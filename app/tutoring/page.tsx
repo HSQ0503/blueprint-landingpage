@@ -6,7 +6,7 @@ import { Check } from "@/components/Check";
 import { Faq } from "@/components/Faq";
 import { TestimonialWall } from "@/components/TestimonialWall";
 import { HeroVideo } from "@/components/HeroVideo";
-import { PLANS, dollars } from "@/lib/content";
+import { PLANS, dollars, GUARANTEE_TERMS_URL, ONDEMAND_CALENDLY_URL } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "1-on-1 Coaching: Private Digital SAT tutoring with Scott",
@@ -252,9 +252,15 @@ export default function TutoringPage() {
                     <div style={{ fontSize: 12.5, lineHeight: 1.5, color: "var(--ink-soft)" }}>
                       <b style={{ color: "var(--ink)" }}>100+ Point Guarantee.</b> Improve by 100+ points
                       (or reach 1450+) by the end of the program, or your money back.{" "}
-                      <Link href="#faq" className="link-quiet" style={{ color: "var(--accent)" }}>
+                      <a
+                        href={GUARANTEE_TERMS_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-quiet"
+                        style={{ color: "var(--accent)" }}
+                      >
                         Details
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 ) : null}
@@ -307,7 +313,7 @@ export default function TutoringPage() {
               <b style={{ color: "var(--gold)", fontFamily: "var(--font-mono-ui)" }}>$215/hr</b> — pay
               and pick your time, no call needed.
             </div>
-            <CtaButton href="/enroll?plan=hour" variant="cream" size="session">
+            <CtaButton href={ONDEMAND_CALENDLY_URL} variant="cream" size="session">
               Book a Session
             </CtaButton>
           </Reveal>

@@ -82,6 +82,10 @@ export const FAQS: Faq[] = [
     a: "Yes, with The Guarantee package. As long as you exhaust all sessions and fulfill the few conditions, you are guaranteed to improve by at least 100 points.",
   },
   {
+    q: "What if I'm already a Blueprint member when I purchase a tutoring package?",
+    a: "You'll receive a prorated refund for any unused time remaining on your current subscription. For example, if you purchase a three-month subscription and upgrade to The Guarantee after one month, you'll be refunded for the remaining two months.",
+  },
+  {
     q: "How does scheduling and rescheduling work?",
     a: "After you sign up, we'll coordinate a weekly session time that works for your schedule. If you need to reschedule, just give notice ahead of time and we'll find another slot when possible. Because 1-on-1 spots are limited, consistent scheduling is the best way to make real progress.",
   },
@@ -99,11 +103,23 @@ export type Plan = {
   popular?: boolean;
   accent?: "blue" | "gold"; // card highlight on the pricing grids
   guarantee?: boolean;
-  stripeUrl?: string; // Scott's Stripe Payment Link; empty => placeholder checkout
+  // Where the checkout CTA sends the student: a Stripe Payment Link for the
+  // coaching tiers, or Calendly's pay-to-book page for the on-demand hour.
+  checkoutUrl?: string;
 };
 
+// Scott's scheduling links (Calendly).
+// Free strategy / guarantee call — embedded on /book-a-call.
+export const CALENDLY_URL: string = "https://calendly.com/scottssatprep-glr7/strategy-call";
+// Pay-to-book page for a single on-demand hour.
+export const ONDEMAND_CALENDLY_URL: string = "https://calendly.com/scottssatprep-glr7/1-on-1-session-on-demand";
+
+// Full terms for the 100+ Point Guarantee.
+export const GUARANTEE_TERMS_URL: string =
+  "https://docs.google.com/document/d/1eIUDL62254vtNoz4eqEJQz7__ds8USxjMvH6mNslh7g/edit?usp=sharing";
+
 // Single source of truth for coaching plans — rendered on /tutoring, /enroll,
-// and /book-a-call. To go live, fill in each stripeUrl below and CALENDLY_URL.
+// and /book-a-call.
 export const PLANS: Plan[] = [
   {
     id: "accelerator",
@@ -119,7 +135,7 @@ export const PLANS: Plan[] = [
     ],
     cta: "Get Started",
     primary: "enroll",
-    stripeUrl: "",
+    checkoutUrl: "https://buy.stripe.com/fZufZg4Kd9v8fQYdnq6c00l",
   },
   {
     id: "elite",
@@ -137,7 +153,7 @@ export const PLANS: Plan[] = [
     cta: "Book a free call",
     primary: "call",
     accent: "blue",
-    stripeUrl: "",
+    checkoutUrl: "https://buy.stripe.com/9B600i6SlgXA48ggzC6c00k",
   },
   {
     id: "guarantee",
@@ -156,7 +172,7 @@ export const PLANS: Plan[] = [
     popular: true,
     accent: "gold",
     guarantee: true,
-    stripeUrl: "",
+    checkoutUrl: "https://buy.stripe.com/00w7sK0tX0YCawE0AE6c00j",
   },
   {
     id: "hour",
@@ -171,12 +187,9 @@ export const PLANS: Plan[] = [
     // Pays immediately — no free call step for single sessions.
     cta: "Book a Session",
     primary: "enroll",
-    stripeUrl: "",
+    checkoutUrl: ONDEMAND_CALENDLY_URL,
   },
 ];
-
-// Scott's scheduling link (Calendly). Leave empty to show the placeholder embed.
-export const CALENDLY_URL: string = "";
 
 // Scott's self-paced Blueprint product site (external).
 export const BLUEPRINT_URL: string = "https://www.the1500blueprint.com/homepage";
